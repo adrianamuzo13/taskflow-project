@@ -1,0 +1,228 @@
+/*VARIABLES*/
+
+:root {
+    --color-bg: #fdf0d5;
+    --color-primary: #540b0e;
+    --color-secondary: #9e2a2b;
+    --color-card: #eae2ab;
+
+    --color-high: #9e2a2b;
+    --color-medium: #fcbf49;
+
+    --font-main: Arial, sans-serif;
+    --spacing: 1rem;
+    --radius: 10px;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/*Scroll suave*/
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header"
+        "aside main";
+}
+
+/* HEADER */
+header {
+    grid-area: header;
+    font-family: 'Times New Roman', serif;
+    background: linear-gradient(145deg, #540b0e, #9e2a2b);
+    color: white;
+    padding: var(--spacing);
+}
+
+.header-content {
+    display: flex;
+    align-items:center;
+    gap: 0.5rem;
+}
+
+.oscar-icon {
+    width: 40px;
+    height: auto;
+}
+
+
+/* ASIDE */
+aside {
+    grid-area: aside;
+    background: linear-gradient(180deg, #540b0e, #b33436);
+    color: white;
+    padding: var(--spacing);
+    font-family: 'Times New Roman', serif;
+
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/*Enlaces del menu*/
+aside a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+aside a:hover {
+    color: #fcbf49;
+}
+
+/*Lista*/
+aside ul {
+    list-style: none;
+    margin-top: var(--spacing);
+}
+
+aside li {
+    margin-bottom: 0.7rem;
+    padding: 6px 8px;
+    border-radius: var(--radius);
+    transition: background 0.3s ease;
+}
+
+aside li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+
+/* MAIN */
+main {
+    grid-area: main;
+    padding: var(--spacing);
+    overflow-y: auto;
+}
+
+section { 
+    scroll-margin-top: 120px;
+}
+
+
+.intro {
+    max-width: auto;
+    line-height: 1.5;
+}
+
+.intro h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    font-family: 'Times New Roman', serif;
+}
+
+.intro p {
+    margin-bottom: 1rem;
+}
+
+
+/* IMG INTRO */
+.intro img {
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: var(--radius);
+    margin-bottom: var(--spacing);
+    margin-top: var(--spacing);
+
+}
+
+.peliculas {
+    margin-top: 1.5rem;
+}
+
+.peliculas h2 {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+/*CUADRICULA*/
+.peliculas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+}
+
+.peliculas h2 {
+    grid-column: 1 / -1;
+}
+
+.card {
+    background: var(--color-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/*POSTERS*/
+.card img {
+    width: 100%;
+    aspect-ratio: 2 / 3;  /* proporción vertical tipo cine */
+    object-fit: cover;    /* rellena sin dejar huecos */
+    display: block;
+}
+
+/*TEXTO TARJETA*/
+.card h3 {
+    font-size: 1rem;
+    margin-top: 0.3rem;
+}
+
+.card .year,
+.card .genre {
+    margin-bottom: 0.3rem;
+}
+
+.status {
+    margin-top: 0.6rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: white;
+    width: fit-content;
+}
+
+.ganadora {
+    background: var(--color-high);
+}
+
+.nominada {
+    background: var(--color-medium);
+}
+
+
+/*Adaptable*/
+@media (max-width: 900px) {
+    .peliculas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .peliculas {
+        grid-template-columns: 1fr;
+    }
+}

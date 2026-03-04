@@ -213,6 +213,89 @@ section {
     background: var(--color-medium);
 }
 
+/* listas mis películas */
+.mis-peliculas {
+    grid-column: 1 / -1; /* Ocupa todo el ancho */
+    background: var(--color-card);
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-top: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+
+
+/* FORMULARIO */
+.mis-peliculas form {
+    display: flex;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.mis-peliculas input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Botón Añadir */
+.mis-peliculas button[type="submit"] {
+    background-color: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.mis-peliculas button[type="submit"]:hover {
+    background-color: var(--color-secondary);
+}
+
+.mis-peliculas ul {
+    list-style: none;
+    padding: 0;
+}
+
+.mis-peliculas li {
+    background: white;
+    margin-bottom: 10px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between; /* Texto a la izquierda, botón a la derecha */
+    align-items: center;
+    border-radius: 8px;
+    border-left: 5px solid var(--color-primary); /* Detalle de color */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Botón Eliminar */
+.mis-peliculas li button {
+    background-color: #d90429; /* Un rojo más vivo para borrar */
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.mis-peliculas li button:hover {
+    background-color: black;
+}
+
+/*buscador */
+#buscador {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: var(--radius);
+    border: 2px solid var(--color-primary);
+    background-color: white;
+    font-size: 1rem;
+}
 
 /*Adaptable*/
 @media (max-width: 900px) {

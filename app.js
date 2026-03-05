@@ -68,7 +68,7 @@ function mostrarPendientes() {
         li.textContent = peliculasPendientes[i];
 
         const boton = document.createElement("button");
-        boton.textContent = "Eliminar";
+        boton.textContent = "🗑";
 
         boton.addEventListener("click", function() {
             peliculasPendientes.splice(i, 1);
@@ -93,7 +93,7 @@ function mostrarVistas() {
         li.textContent = peliculasVistas[i];
 
         const boton = document.createElement("button");
-        boton.textContent = "Eliminar";
+        boton.textContent = "🗑";
 
         boton.addEventListener("click", function() {
             peliculasVistas.splice(i, 1);

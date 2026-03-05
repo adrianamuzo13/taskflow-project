@@ -111,9 +111,9 @@ function mostrarVistas() {
 buscador.addEventListener("input", function() {
 
     const texto = buscador.value.toLowerCase();
-    const todasLasLi = document.querySelectorAll("li");
+    const peliculasUsuario = document.querySelectorAll("li");
 
-    todasLasLi.forEach(function(li) {
+    peliculasUsuario.forEach(function(li) {
 
         const contenido = li.firstChild.textContent.toLowerCase();
 

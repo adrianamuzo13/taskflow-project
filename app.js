@@ -111,14 +111,14 @@ function mostrarVistas() {
 buscador.addEventListener("input", function() {
 
     const texto = buscador.value.toLowerCase();
-    const peliculasUsuario = document.querySelectorAll("li");
+    const peliculasUsuario = document.querySelectorAll("#lista-pendientes li, #lista-vistas li");
 
     peliculasUsuario.forEach(function(li) {
 
         const contenido = li.firstChild.textContent.toLowerCase();
 
         if (contenido.includes(texto)) {
-            li.style.display = "list-item";
+            li.style.display = "";
         } else {
             li.style.display = "none";
         }

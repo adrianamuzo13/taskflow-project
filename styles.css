@@ -216,7 +216,7 @@ section {
 /* listas mis películas */
 .mis-peliculas {
     grid-column: 1 / -1; /* Ocupa todo el ancho */
-    background: var(--color-card);
+    background: #f6e698;
     padding: 2rem;
     border-radius: var(--radius);
     margin-top: 2rem;
@@ -264,7 +264,7 @@ section {
     margin-bottom: 10px;
     padding: 12px;
     display: flex;
-    justify-content: space-between; /* Texto a la izquierda, botón a la derecha */
+    justify-content: space-between; /* texto a la izquierda, botón a la derecha */
     align-items: center;
     border-radius: 8px;
     border-left: 5px solid var(--color-primary); 
@@ -299,15 +299,31 @@ section {
     font-size: 1rem;
 }
 
-/*Adaptable*/
-@media (max-width: 900px) {
-    .peliculas {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 
-@media (max-width: 600px) {
-    .peliculas {
+/*Adaptable*/
+@media (max-width: 768px) {
+    body {
+        display: grid;
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr; /* define alturas automáticas para el header y el aside */
+        grid-template-areas:
+            "header"
+            "aside"
+            "main";
+    }
+
+    /* ajusta el aside para q fluya con el main y no tape la pantalla */
+    aside {
+        grid-area: aside;
+        position: relative; 
+        height: auto;       /* la altura dependerá solo de los enlaces q tiene */
+        min-height: auto;
+        overflow-y: visible; /* se quita el scroll interno del aside */
+    }
+
+    /* aseguro q el Main no tenga un scroll independiente bloqueado */
+    main {
+        grid-area: main;
+        overflow-y: visible; 
     }
 }

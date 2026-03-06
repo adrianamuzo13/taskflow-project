@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme {
+  --font-oscar: "Times New Roman", Times, serif;
+
+  --color-bg: #fdf0d5; 
+  --color-primary: #540b0e;
+  --color-secondary: #9e2a2b;
+  --color-card: #eae2ab;
+  --color-gold: #fcbf49;
+}
+
+/* ESTO ES PARA QUE EL MODO OSCURO FUNCIONE CON LA CLASE 'dark' */
+@custom-variant dark (&:where(.dark, .dark *));

@@ -1,370 +1,541 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="">
 
 <head>
     <meta charset="UTF-8">
     <title>Películas Oscar</title>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'oscar': ['"Times New Roman"', 'Times', 'serif'],
+                    },
+                    colors: {
+                        'color-bg': '#fdf0d5',
+                        'color-primary': '#540b0e',
+                        'color-secondary': '#9e2a2b',
+                        'color-card': '#eae2ab',
+                        'color-gold': '#fcbf49',
+                    }
+                }
+            }
+        }
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body>
+<body
+    class="bg-color-bg dark:bg-slate-900 text-gray-900 dark:text-gray-100 transition-colors duration-500 min-h-screen">
 
-    <header>
-        <div class="header-content">
-            <h1>Películas Premios Oscar</h1>
-            <img src="https://cdn-icons-png.flaticon.com/512/206/206982.png" alt="Oscar" class="oscar-icon">
+    <button onclick="document.documentElement.classList.toggle('dark')"
+        class="fixed top-4 right-4 z-50 p-2 bg-color-gold rounded-full shadow-lg active:scale-90 transition-all">
+        <img src="https://cdn-icons-png.flaticon.com/512/5558/5558234.png" alt="ModoOscuro" class="w-8 h-8">
+    </button>
+
+    <header class="bg-gradient-to-r from-color-primary to-color-secondary text-white p-4 shadow-xl">
+        <div class="max-w-7xl mx-auto flex  justify-start items-center gap-3">
+            <h1 class="font-oscar text-3xl font-bold tracking-wide">Películas Premios Oscar</h1>
+            <img src="https://cdn-icons-png.flaticon.com/512/206/206982.png" alt="Oscar" class="w-12 h-12 brightness-110">
         </div>
     </header>
 
-    <aside>
-        <h2>Géneros</h2>
-        <ul>
-            <li><a href="#drama">Drama</a></li>
-            <li><a href="#animacion">Animación</a></li>
-            <li><a href="#comedia">Comedia</a></li>
-            <li><a href="#accion">Acción</a></li>
-            <li><a href="#cienciaficcion">Ciencia Ficción</a></li>
+    <div class="flex flex-col md:flex-row md:h-[calc(100vh-80px)] overflow-hidden w-full">  
+
+        <aside class="w-full md:w-64 p-6 bg-black/5 dark:bg-white/5 border-r border-black/10 dark:border-white/10 md:overflow-y-auto shrink-0">
+            <h2 class="text-xl font-bold mb-4 border-b-2 border-color-gold text-color-primary dark:text-color-gold uppercase text-sm tracking-widest">
+            Géneros</h2>
+        <ul class="space-y-3 mb-10 font-medium">
+            <li><a href="#drama" class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Drama</a></li>
+            <li><a href="#animacion" class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Animación</a>
+            </li>
+            <li><a href="#comedia" class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Comedia</a></li>
+            <li><a href="#accion" class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Acción</a></li>
+            <li><a href="#cienciaficcion" class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Ciencia Ficción</a>
+            </li>
         </ul>
 
-        
-        <h2>Mis películas</h2>
-        <ul>
-            <li><a href="#form-pendientes">Peliculas por ver</a></li>
-            <li><a href="#form-vistas">Películas vistas</a></li>
+        <h2
+            class="text-xl font-bold mb-4 border-b-2 border-color-gold text-color-primary dark:text-color-gold uppercase text-sm tracking-widest">
+            Mis películas</h2>
+        <ul class="space-y-3 font-medium">
+            <li><a href="#form-pendientes"
+                    class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Peliculas por
+                    ver</a>
+            </li>
+            <li><a href="#form-vistas"
+                    class="hover:text-color-gold dark:hover:text-color-secondary transition-colors">Películas
+                    vistas</a>
+            </li>
         </ul>
     </aside>
 
-    <main>
-        <section class="intro">
-            <h2>Bienvenido a los Premios Oscar</h2>
-            <p>
-                Los Premios Oscar representan el reconocimiento más prestigioso de la industria cinematográfica a nivel
-                mundial.
-                Desde 1929, la Academia ha celebrado el talento, la creatividad y la excelencia artística en el cine.
-            </p>
-
-            <p>
-                En esta página podrás descubrir una selección de películas ganadoras y nominadas a lo largo de la
-                historia,
-                organizadas por género para que explores fácilmente tus favoritas. Desde intensos dramas hasta
-                inolvidables
-                historias de animación, cada título forma parte del legado del séptimo arte.
-            </p>
-
-            <p>
-                Sumérgete en el universo del cine, revive grandes clásicos y encuentra nuevas historias que han dejado
-                huella
-                en la gran pantalla.
-            </p>
-            <img src="https://cdn.mos.cms.futurecdn.net/PAD5hJyBdV5EXJxt3sLeFT-650-80.jpg.webp" alt="Estatuilla Oscar">
-        </section>
-
-        <!-- DRAMA -->
-        <section id="drama" class="peliculas">
-            <h2>Drama</h2>
-
-            <div class="card">
-                <img src="https://images.justwatch.com/poster/244596393/s718/nomadland.jpg">
-                <h3>Nomadland</h3>
-                <p class="year">2020</p>
-                <p class="genre">Drama</p>
-                <span class="status ganadora">Ganadora</span>
+    <main class="flex-1 p-6 lg:p-12 overflow-y-auto scroll-smooth">
+        <div class="max-w-5xl mx-auto">
+            <section class="mb-20">
+            <h2 class="font-oscar text-4xl font-black mb-6 text-color-primary dark:text-color-gold">
+                Bienvenido a los Premios Oscar
+            </h2>
+            <div class="space-y-4 text-lg leading-relaxed opacity-90">
+                <p>Los Premios Oscar representan el reconocimiento más prestigioso de la industria cinematográfica a
+                    nivel mundial. Desde 1929, la Academia ha celebrado el talento, la creatividad y la excelencia
+                    artística en el cine.</p>
+                <p>En esta página podrás descubrir una selección de películas ganadoras y nominadas a lo largo de la
+                    historia, organizadas por género para que explores fácilsmente tus favoritas. Desde intensos
+                    dramas hasta inolvidables historias de animación, cada título forma parte del legado del séptimo
+                    arte.</p>
+                <p>Sumérgete en el universo del cine, revive grandes clásicos y encuentra nuevas historias que han
+                    dejado huella en la gran pantalla.</p>
             </div>
+            <img src="https://cdn.mos.cms.futurecdn.net/PAD5hJyBdV5EXJxt3sLeFT-650-80.jpg.webp" alt="Intro Oscar"
+                class="mt-8  shadow-2xl w-full mb-6 rounded-lg">
+            </section>
 
-            <div class="card">
-                <img src="https://es.web.img3.acsta.net/c_310_420/pictures/19/09/17/17/03/5442885.jpg">
-                <h3>Joker</h3>
-                <p class="year">2019</p>
-                <p class="genre">Drama</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+            <section id="drama" class="mb-20">
+                <h2 class="mb-10 text-[1.8rem] font-bold border-l-8 border-color-primary pl-4 dark:border-color-gold">
+                    Drama</h2>
 
-            <div class="card">
-                <img src="https://pics.filmaffinity.com/the_pursuit_of_happyness-660040804-large.jpg">
-                <h3>En Busca de la Felicidad</h3>
-                <p class="year">2006</p>
-                <p class="genre">Drama</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10">
 
-            <div class="card">
-                <img src="https://pics.filmaffinity.com/the_shawshank_redemption-576140557-large.jpg">
-                <h3>Cadena Perpetua</h3>
-                <p class="year">1994</p>
-                <p class="genre">Drama</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://images.justwatch.com/poster/244596393/s718/nomadland.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Nomadland</h3>
+                            <p class="text-sm font-bold opacity-70">2020</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BZTkzMjIwOWUtYmRkZS00ZDdjLThiOTQtNjk4ZmM5NTY1YWI1XkEyXkFqcGc@._V1_.jpg">
-                <h3>La Lista de Schindler</h3>
-                <p class="year">1993</p>
-                <p class="genre">Drama</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://es.web.img3.acsta.net/c_310_420/pictures/19/09/17/17/03/5442885.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Joker</h3>
+                            <p class="text-sm font-bold opacity-70">2019</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCDRCFR3-HdYt9UY9BI28VJcC6lBZOazD0BaGWMMZJpQzcnLEH-xgSHdbahy76lGZLzYotLAeFKJgTEyHvVHWpP3QNUYuPMugdH_HZTMm&s=10">
-                <h3>El Padrino</h3>
-                <p class="year">1972</p>
-                <p class="genre">Drama</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://pics.filmaffinity.com/the_pursuit_of_happyness-660040804-large.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">En busca de la Felicidad</h3>
+                            <p class="text-sm font-bold opacity-70">2006</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
 
-        </section>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://pics.filmaffinity.com/the_shawshank_redemption-576140557-large.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Cadena Perpetua</h3>
+                            <p class="text-sm font-bold opacity-70">1994</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
 
-        <!-- ANIMACIÓN -->
-        <section id="animacion" class="peliculas">
-            <h2>Animación</h2>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZTkzMjIwOWUtYmRkZS00ZDdjLThiOTQtNjk4ZmM5NTY1YWI1XkEyXkFqcGc@._V1_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">La Lista de Schindler</h3>
+                            <p class="text-sm font-bold opacity-70">1993</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BMDliMjNjY2MtOTZmYi00MWNmLWIwYTEtOWNlNWEyNTUyNTIxXkEyXkFqcGc@._V1_.jpg">
-                <h3>Toy Story 4</h3>
-                <p class="year">2019</p>
-                <p class="genre">Animación</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsCDRCFR3-HdYt9UY9BI28VJcC6lBZOazD0BaGWMMZJpQzcnLEH-xgSHdbahy76lGZLzYotLAeFKJgTEyHvVHWpP3QNUYuPMugdH_HZTMm&s=10"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">El Padrino</h3>
+                            <p class="text-sm font-bold opacity-70">1972</p>
+                            <p class="text-sm opacity-70">Drama</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
 
-            <div class="card">
-                <img src="https://es.web.img3.acsta.net/r_1280_720/pictures/17/06/07/10/14/213172.jpg">
-                <h3>Coco</h3>
-                <p class="year">2017</p>
-                <p class="genre">Animación</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+                </div>
+            </section>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BMTcyOTc2OTA1Ml5BMl5BanBnXkFtZTcwOTI1MjkzOQ@@._V1_.jpg">
-                <h3>Los Croods</h3>
-                <p class="year">2013</p>
-                <p class="genre">Animación</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+            <section id="animacion" class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 pl-4 border-l-8 border-color-primary dark:border-color-gold">
+                    Animación</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMDliMjNjY2MtOTZmYi00MWNmLWIwYTEtOWNlNWEyNTUyNTIxXkEyXkFqcGc@._V1_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Toy Story 4</h3>
+                            <p class="text-sm font-bold opacity-70">2019 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://es.web.img3.acsta.net/r_1280_720/pictures/17/06/07/10/14/213172.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Coco</h3>
+                            <p class="text-sm font-bold opacity-70">2017 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BMTcyOTc2OTA1Ml5BMl5BanBnXkFtZTcwOTI1MjkzOQ@@._V1_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Los Croods</h3>
+                            <p class="text-sm font-bold opacity-70">2013 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/S/pv-target-images/3b48c7641f6c89ce2f878f7f22400ce2bd32c4b41bcdd04383c93f69f684eead.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Como Entrenar a tu Dragón</h3>
+                            <p class="text-sm font-bold opacity-70">2010 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://images.justwatch.com/poster/312538889/s718/kung-fu-panda.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Kung Fu Panda</h3>
+                            <p class="text-sm font-bold opacity-70">2008 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/I/715VhUSV2PL._AC_UF894,1000_QL80_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Ratatouille</h3>
+                            <p class="text-sm font-bold opacity-70">2007 </p>
+                            <p class="text-sm opacity-70">Animación</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/S/pv-target-images/3b48c7641f6c89ce2f878f7f22400ce2bd32c4b41bcdd04383c93f69f684eead.jpg">
-                <h3>Cómo Entrenar a tu Dragón</h3>
-                <p class="year">2010</p>
-                <p class="genre">Animación</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+            <section id="comedia" class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 pl-4 border-l-8 border-color-primary dark:border-color-gold">Comedia
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BYjc1YmZiMmUtYjBiNC00YzJmLWE5NTYtZTY5Mjc0NDY0ZmI3XkEyXkFqcGc@._V1_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Jojo Rabbit</h3>
+                            <p class="text-sm font-bold opacity-70">2019 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BM2JlYjE4YWYtMTA3MC00YTAwLTg3OGMtZjQxMjQzMGM3M2U0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">La la land</h3>
+                            <p class="text-sm font-bold opacity-70">2016 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://66.media.tumblr.com/d549e6b3ad23675a8cead3d1e6e619c5/tumblr_o1nfauS1Iv1s80h8lo1_1280.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Birdman</h3>
+                            <p class="text-sm font-bold opacity-70">2014 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://movienonsense.com/wp-content/uploads/2020/03/f0594-thegrandbudapest2.jpg?w=1140"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">El gran hotel Budapest</h3>
+                            <p class="text-sm font-bold opacity-70">2014 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://es.web.img3.acsta.net/medias/nmedia/18/82/26/21/19609697.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">El discurso del Rey</h3>
+                            <p class="text-sm font-bold opacity-70">2010 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://pics.filmaffinity.com/little_miss_sunshine-534650278-large.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Pequeña Miss Sunshine</h3>
+                            <p class="text-sm font-bold opacity-70">2006 </p>
+                            <p class="text-sm opacity-70">Comedia</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="card">
-                <img src="https://images.justwatch.com/poster/312538889/s718/kung-fu-panda.jpg">
-                <h3>Kung Fu Panda</h3>
-                <p class="year">2008</p>
-                <p class="genre">Animación</p>
-                <span class="status nominada">Nominada</span>
-            </div>
+            <section id="accion" class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 pl-4 border-l-8 border-color-primary dark:border-color-gold">Acción
+                </h2>
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://lumiere-a.akamaihd.net/v1/images/p_blackpanther_19754_4ac13f07.jpeg?region=0,0,540,810"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Black Panther</h3>
+                            <p class="text-sm font-bold opacity-70">2018 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://www.cinesa.es/media/dl0bwwp0/mad-max-furia.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Mad Max: Furia en la carretera</h3>
+                            <p class="text-sm font-bold opacity-70">2015 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/M/MV5BZDYwMDU0NTktMjg1MC00ZWNiLWE2ZTQtYzczZWMxZGM3OTJmXkEyXkFqcGc@._V1_.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Inception (Origen)</h3>
+                            <p class="text-sm font-bold opacity-70">2010 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://preview.redd.it/the-dark-knight-2008-this-live-action-film-by-christopher-v0-95droxtfqsqa1.jpg?width=640&crop=smart&auto=webp&s=1497450dddf1c3e9293cfebc84c3aa1345102ae2"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">El Caballero Oscuro</h3>
+                            <p class="text-sm font-bold opacity-70">2008 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://es.web.img3.acsta.net/medias/nmedia/18/70/92/02/20149073.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Gladiator</h3>
+                            <p class="text-sm font-bold opacity-70">2000 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://es.web.img3.acsta.net/pictures/14/03/05/09/42/163621.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Salvar al Soldado Ryan</h3>
+                            <p class="text-sm font-bold opacity-70">1998 </p>
+                            <p class="text-sm opacity-70">Acción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="card">
-                <img src="https://m.media-amazon.com/images/I/715VhUSV2PL._AC_UF894,1000_QL80_.jpg">
-                <h3>Ratatouille</h3>
-                <p class="year">2007</p>
-                <p class="genre">Animación</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+            <section id="cienciaficcion" class="mb-20">
+                <h2 class="text-3xl font-bold mb-10 pl-4 border-l-8 border-color-primary dark:border-color-gold">Ciencia
+                    Ficción</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://static.wikia.nocookie.net/doblaje/images/b/b7/Everything_Everywhere_All_at_Once_p%C3%B3ster_hd.jpg/revision/latest?cb=20231127032630&path-prefix=es"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Todo a la vez en todas partes</h3>
+                            <p class="text-sm font-bold opacity-70">2022 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://images.pathe-thuis.nl/29177_378x538.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Dune</h3>
+                            <p class="text-sm font-bold opacity-70">2021 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/S/pv-target-images/e374cc73e3f73c9543d7e863f29cc94358bbe3df636ed73a25c15a49020d8b61.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">La llegada</h3>
+                            <p class="text-sm font-bold opacity-70">2016 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://m.media-amazon.com/images/S/pv-target-images/79194981293eabf6620ece96eb5a9c1fffa04d3374ae12986e0748800b37b9cf.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Interstelar</h3>
+                            <p class="text-sm font-bold opacity-70">2014 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://pics.filmaffinity.com/Gravity-201743084-large.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Gravity</h3>
+                            <p class="text-sm font-bold opacity-70">2013 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-secondary text-white text-xs rounded-full uppercase">Ganadora</span>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-color-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg transition-all hover:-translate-y-2">
+                        <img src="https://pics.filmaffinity.com/Avatar-262844280-large.jpg"
+                            class="w-full aspect-[2/3] object-cover block">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl ">Avatar</h3>
+                            <p class="text-sm font-bold opacity-70">2009 </p>
+                            <p class="text-sm opacity-70">Ciencia Ficción</p>
+                            <span
+                                class="inline-block mt-2 px-3 py-1 bg-color-gold text-white text-xs rounded-full uppercase">Nominada</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-        </section>
+            <section class="mis-peliculas mt-20 p-10 bg-black/5 dark:bg-white/5 rounded-3xl ">
 
-        <!-- COMEDIA -->
-        <section id="comedia" class="peliculas">
-            <h2>Comedia</h2>
+                <div class="relative mb-12">
+                    <input type="text" id="buscador" placeholder="Buscar en mis listas..."
+                        class="w-full p-4 pl-5 rounded-2xl bg-white dark:bg-slate-800 border-2 border-color-primary focus:border-color-gold outline-none transition-all shadow-md">
+                </div>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BYjc1YmZiMmUtYjBiNC00YzJmLWE5NTYtZTY5Mjc0NDY0ZmI3XkEyXkFqcGc@._V1_.jpg">
-                <h3>Jojo Rabbit</h3>
-                <p class="year">2019</p>
-                <p class="genre">Comedia</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
+                <div class="grid md:grid-cols-2 gap-16">
+                    <div>
+                        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">
+                            <span>🎬</span> Películas por ver
+                        </h2>
+                        <form id="form-pendientes" class="flex gap-2 mb-6">
+                            <input type="text" id="input-pendientes" placeholder="Añadir título..."
+                                class="flex-1 p-3 rounded-xl dark:bg-slate-800 border-2 border-transparent focus:border-color-primary outline-none">
+                            <button type="submit"
+                                class="bg-color-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-color-secondary transition">Añadir</button>
+                        </form>
+                        <ul id="lista-pendientes" class="space-y-3 opacity-80"></ul>
+                    </div>
 
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BM2JlYjE4YWYtMTA3MC00YTAwLTg3OGMtZjQxMjQzMGM3M2U0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg">
-                <h3>La La Land</h3>
-                <p class="year">2016</p>
-                <p class="genre">Comedia</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://66.media.tumblr.com/d549e6b3ad23675a8cead3d1e6e619c5/tumblr_o1nfauS1Iv1s80h8lo1_1280.jpg">
-                <h3>Birdman</h3>
-                <p class="year">2014</p>
-                <p class="genre">Comedia</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img src="https://movienonsense.com/wp-content/uploads/2020/03/f0594-thegrandbudapest2.jpg?w=1140">
-                <h3>El Gran Hotel Budapest</h3>
-                <p class="year">2014</p>
-                <p class="genre">Comedia</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img src="https://es.web.img3.acsta.net/medias/nmedia/18/82/26/21/19609697.jpg">
-                <h3>El discurso del Rey</h3>
-                <p class="year">2010</p>
-                <p class="genre">Comedia</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img src="https://pics.filmaffinity.com/little_miss_sunshine-534650278-large.jpg">
-                <h3>Pequeña Miss Sunshine</h3>
-                <p class="year">2006</p>
-                <p class="genre">Comedia</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-        </section>
-
-        <!-- ACCIÓN -->
-        <section id="accion" class="peliculas">
-            <h2>Acción</h2>
-
-            <div class="card">
-                <img
-                    src="https://lumiere-a.akamaihd.net/v1/images/p_blackpanther_19754_4ac13f07.jpeg?region=0,0,540,810">
-                <h3>Black Panther</h3>
-                <p class="year">2018</p>
-                <p class="genre">Acción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img src="https://www.cinesa.es/media/dl0bwwp0/mad-max-furia.jpg">
-                <h3>Mad Max: Furia en la carretera</h3>
-                <p class="year">2015</p>
-                <p class="genre">Acción</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/M/MV5BZDYwMDU0NTktMjg1MC00ZWNiLWE2ZTQtYzczZWMxZGM3OTJmXkEyXkFqcGc@._V1_.jpg">
-                <h3>Inception (Origen)</h3>
-                <p class="year">2010</p>
-                <p class="genre">Acción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://preview.redd.it/the-dark-knight-2008-this-live-action-film-by-christopher-v0-95droxtfqsqa1.jpg?width=640&crop=smart&auto=webp&s=1497450dddf1c3e9293cfebc84c3aa1345102ae2">
-                <h3>El Caballero Oscuro</h3>
-                <p class="year">2008</p>
-                <p class="genre">Acción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img src="https://es.web.img3.acsta.net/medias/nmedia/18/70/92/02/20149073.jpg">
-                <h3>Gladiator</h3>
-                <p class="year">2000</p>
-                <p class="genre">Acción</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img src="https://es.web.img3.acsta.net/pictures/14/03/05/09/42/163621.jpg">
-                <h3>Salvar al Soldado Ryan</h3>
-                <p class="year">1998</p>
-                <p class="genre">Acción</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-        </section>
-
-        <!-- CIENCIA FICCIÓN -->
-        <section id="cienciaficcion" class="peliculas">
-            <h2>Ciencia Ficción</h2>
-
-            <div class="card">
-                <img
-                    src="https://static.wikia.nocookie.net/doblaje/images/b/b7/Everything_Everywhere_All_at_Once_p%C3%B3ster_hd.jpg/revision/latest?cb=20231127032630&path-prefix=es">
-                <h3>Todo a la Vez en Todas Partes</h3>
-                <p class="year">2022</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img src="https://images.pathe-thuis.nl/29177_378x538.jpg">
-                <h3>Dune</h3>
-                <p class="year">2021</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/S/pv-target-images/e374cc73e3f73c9543d7e863f29cc94358bbe3df636ed73a25c15a49020d8b61.jpg">
-                <h3>La Llegada</h3>
-                <p class="year">2016</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img
-                    src="https://m.media-amazon.com/images/S/pv-target-images/79194981293eabf6620ece96eb5a9c1fffa04d3374ae12986e0748800b37b9cf.jpg">
-                <h3>Interstelar</h3>
-                <p class="year">2014</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-
-            <div class="card">
-                <img src="https://pics.filmaffinity.com/Gravity-201743084-large.jpg">
-                <h3>Gravity</h3>
-                <p class="year">2013</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status ganadora">Ganadora</span>
-            </div>
-
-            <div class="card">
-                <img src="https://pics.filmaffinity.com/Avatar-262844280-large.jpg">
-                <h3>Avatar</h3>
-                <p class="year">2009</p>
-                <p class="genre">Ciencia ficción</p>
-                <span class="status nominada">Nominada</span>
-            </div>
-        </section>
-
-        <section class="mis-peliculas">
-
-           <input type="text" id="buscador" placeholder="Buscar en mis listas...">
-
-            <h2>Péliculas por ver 🎬</h2>
-            <form id= "form-pendientes">
-                <input type="text" id = "input-pendientes" placeholder="Añadir película">
-                <button type="submit">Añadir</button>
-            </form>
-            <ul id="lista-pendientes"></ul>
-
-            <h2>Películas vistas ✅</h2>
-            <form id= "form-vistas">
-                <input type="text" id = "input-vistas" placeholder="Añadir película">
-                <button type="submit">Añadir</button>
-            </form>
-            <ul id = "lista-vistas" > </ul>
-        </section>
-
+                    <div>
+                        <h2 class="text-2xl font-black mb-6 flex items-center gap-3">
+                            <span>✅</span> Películas vistas
+                        </h2>
+                        <form id="form-vistas" class="flex gap-2 mb-6">
+                            <input type="text" id="input-vistas" placeholder="Añadir título..."
+                                class="flex-1 p-3 rounded-xl dark:bg-slate-800 border-2 border-transparent focus:border-color-primary outline-none">
+                            <button type="submit"
+                                class="bg-color-primary text-white font-bold px-6 py-3 rounded-xl hover:bg-color-secondary transition">Añadir</button>
+                        </form>
+                        <ul id="lista-vistas" class="space-y-3 opacity-80"></ul>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
+    </div>
 
-<script src="app.js"></script>
-
+    <script src="app.js"></script>
 </body>
+
 </html>

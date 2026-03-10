@@ -1,0 +1,2 @@
+# Flujo de trabajo con Cursor IDE
+Se registrarán  los atajos de teclado usados como mas frecuencia y se documentaran 2 que hayan mejorado el codigo en Cursor (Cursor como IDE principal, destacando funciones como el Chat (Cmd+L) y Composer (Cmd+I))

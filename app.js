@@ -1,16 +1,16 @@
 import { generarEstrellas, convertirMinutosAHoras } from "./utils.js";
 
 /*PELICULAS PENDIENTES*/
-const formPendientes = document.getElementById("form-pendientes");
-const inputPendientes = document.getElementById("input-pendientes");
-const listaPendientes = document.getElementById("lista-pendientes");
+const pendientesForm = document.getElementById("form-pendientes");
+const pendientesInput = document.getElementById("input-pendientes");
+const pendientesLista = document.getElementById("lista-pendientes");
 
 /**PELICULAS VISTAS*/
-const formVistas = document.getElementById("form-vistas");
-const inputVistas = document.getElementById("input-vistas");
-const listaVistas = document.getElementById("lista-vistas");
+const vistasForm = document.getElementById("form-vistas");
+const vistasInput = document.getElementById("input-vistas");
+const vistasLista = document.getElementById("lista-vistas");
 
-const buscador = document.getElementById("buscador");
+const buscadorInput = document.getElementById("buscador");
 
 let peliculasPendientes = [];
 let peliculasVistas = [];

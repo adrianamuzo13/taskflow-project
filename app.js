@@ -45,6 +45,30 @@ formPendientes.addEventListener("submit", function(e) {
 
     if (titulo !== "") {
         titulo = toCapitalCase(titulo);
+        // Validar si el título ya existe usando .some()
+        if (peliculasPendientes.some(peli => peli === titulo)) {
+            alert('Esta película ya está en la lista');
+            return;
+        }
+        peliculasPendientes.push(titulo);
+        localStorage.setItem("pendientes", JSON.stringify(peliculasPendientes));
+        mostrarPendientes();
+        inputPendientes.value = "";
+    }
+});
+
+    // Convierte a Capital Case (cada palabra con la primera letra en mayúscula)
+    function toCapitalCase(str) {
+        return str
+            .toLowerCase()
+            .split(' ')
+            .filter(Boolean)
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+
+    if (titulo !== "") {
+        titulo = toCapitalCase(titulo);
         peliculasPendientes.push(titulo);
         localStorage.setItem("pendientes", JSON.stringify(peliculasPendientes));
         mostrarPendientes();

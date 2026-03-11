@@ -1,11 +1,11 @@
 import { generarEstrellas, convertirMinutosAHoras } from "./utils.js";
 
-/*PELICULAS PENDIENTES*/
+/* PELICULAS PENDIENTES */
 const pendientesForm = document.getElementById("form-pendientes");
 const pendientesInput = document.getElementById("input-pendientes");
 const pendientesLista = document.getElementById("lista-pendientes");
 
-/**PELICULAS VISTAS*/
+/* PELICULAS VISTAS */
 const vistasForm = document.getElementById("form-vistas");
 const vistasInput = document.getElementById("input-vistas");
 const vistasLista = document.getElementById("lista-vistas");
@@ -26,22 +26,29 @@ if (localStorage.getItem("vistas")) {
     mostrarVistas();
 }
 
+/**
+ * Convierte un string a Capital Case (cada palabra con su primera letra mayúscula).
+ * @param {string} str - El string a convertir.
+ * @returns {string} El string convertido.
+ */
+function toCapitalCase(str) {
+    return str
+        .toLowerCase()
+        .split(' ')
+        .filter(Boolean)
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
 
-/* AÑADIR  PENDIENTE */
-formPendientes.addEventListener("submit", function(e) {
+/**
+ * Listener para añadir una película pendiente al enviar el formulario.
+ * Evita títulos duplicados y formatea el título antes de añadirlo.
+ * @param {Event} e - Evento submit del formulario.
+ */
+pendientesForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    let titulo = inputPendientes.value.trim();
-
-    // Convierte a Capital Case (cada palabra con la primera letra en mayúscula)
-    function toCapitalCase(str) {
-        return str
-            .toLowerCase()
-            .split(' ')
-            .filter(Boolean)
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    }
+    let titulo = pendientesInput.value.trim();
 
     if (titulo !== "") {
         titulo = toCapitalCase(titulo);
@@ -53,102 +60,81 @@ formPendientes.addEventListener("submit", function(e) {
         peliculasPendientes.push(titulo);
         localStorage.setItem("pendientes", JSON.stringify(peliculasPendientes));
         mostrarPendientes();
-        inputPendientes.value = "";
+        pendientesInput.value = "";
     }
 });
 
-    // Convierte a Capital Case (cada palabra con la primera letra en mayúscula)
-    function toCapitalCase(str) {
-        return str
-            .toLowerCase()
-            .split(' ')
-            .filter(Boolean)
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    }
-
-    if (titulo !== "") {
-        titulo = toCapitalCase(titulo);
-        peliculasPendientes.push(titulo);
-        localStorage.setItem("pendientes", JSON.stringify(peliculasPendientes));
-        mostrarPendientes();
-        inputPendientes.value = "";
-    }
-});
-
-
-/* AÑADIR  VISTA */
 /**
- * Agrega un listener al formulario de películas vistas que se activa al enviar el formulario.
- * @param {Event} e - El evento de envío del formulario.
+ * Listener para añadir una película vista al enviar el formulario.
+ * Añade el título tal cual desde el input si no está vacío.
+ * @param {Event} e - Evento submit del formulario.
  */
-formVistas.addEventListener("submit", (e) => {
+vistasForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    /** Obtiene el valor del campo de entrada donde se escribe el título de la película vista */
-    const titulo = inputVistas.value;
+    const titulo = vistasInput.value;
 
-    /**
-     * Si el título no está vacío:
-     * - Agrega el título al array de películas vistas
-     * - Guarda el array actualizado en localStorage bajo la clave 'vistas'
-     * - Actualiza la interfaz llamando a mostrarVistas()
-     * - Limpia el campo de entrada dejando su valor en blanco
-     */
     if (titulo !== "") {
-        peliculasVistas.push(titulo); // Añade la película vista al array
-        localStorage.setItem("vistas", JSON.stringify(peliculasVistas)); // Actualiza en localStorage
-        mostrarVistas(); // Refresca la lista mostrada en la página
-        inputVistas.value = ""; // Resetea el input del formulario
+        peliculasVistas.push(titulo);
+        localStorage.setItem("vistas", JSON.stringify(peliculasVistas));
+        mostrarVistas();
+        vistasInput.value = "";
     }
 });
 
 /**
- * Renderiza cualquier lista de películas en su contenedor correspondiente.
- * @param {Array} lista - Array de películas.
- * @param {HTMLElement} contenedor - Elemento UL donde se insertarán los LIs.
- * @param {string} claveStorage - Clave para localStorage.
+ * Renderiza una lista de películas en el contenedor de la interfaz correspondiente.
+ * Crea botones para eliminar cada película de la lista y actualiza el almacenamiento local.
+ * @param {Array<string>} lista - Array de títulos de películas.
+ * @param {HTMLElement} contenedor - Elemento UL donde se va a renderizar la lista.
+ * @param {string} claveStorage - Nombre de la clave en localStorage para esta lista.
  */
 function renderizarLista(lista, contenedor, claveStorage) {
     contenedor.innerHTML = "";
 
-
-
     lista.forEach((item, i) => {
-        // Usando template strings para el contenido
         const li = document.createElement("li");
         li.innerHTML = `
             ${item}
             <button class="borrar-btn" style="margin-left:8px;">🗑</button>
         `;
-
         const boton = li.querySelector(".borrar-btn");
-
         boton.addEventListener("click", function() {
             lista.splice(i, 1);
             localStorage.setItem(claveStorage, JSON.stringify(lista));
             renderizarLista(lista, contenedor, claveStorage);
         });
-
         contenedor.appendChild(li);
     });
 }
 
-// Funciones específicas para cada lista aprovechando la genérica
+/**
+ * Renderiza la lista de películas pendientes utilizando renderizarLista.
+ */
 function mostrarPendientes() {
-    renderizarLista(peliculasPendientes, listaPendientes, "pendientes");
+    renderizarLista(peliculasPendientes, pendientesLista, "pendientes");
 }
 
+/**
+ * Renderiza la lista de películas vistas utilizando renderizarLista.
+ */
 function mostrarVistas() {
-    renderizarLista(peliculasVistas, listaVistas, "vistas");
+    renderizarLista(peliculasVistas, vistasLista, "vistas");
 }
 
-
-/* BUSCADOR */
-buscador.addEventListener("input", function() {
-    filtrarElementos(buscador.value);
+/**
+ * Listener para el input del buscador.
+ * Filtra las películas en ambas listas visibles en base al texto ingresado.
+ */
+buscadorInput.addEventListener("input", function() {
+    filtrarElementos(buscadorInput.value);
 });
 
+/**
+ * Filtra y muestra solo aquellos elementos de las listas de películas que contienen el texto buscado.
+ * Oculta los elementos que no cumplen con el filtro aplicando/removiendo la clase 'hidden'.
+ * @param {string} texto - Texto a buscar (criterio de filtrado).
+ */
 function filtrarElementos(texto) {
     const filtro = texto.toLowerCase();
     const peliculasUsuario = document.querySelectorAll("#lista-pendientes li, #lista-vistas li");

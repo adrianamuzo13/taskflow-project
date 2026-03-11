@@ -146,20 +146,18 @@ function mostrarVistas() {
 
 /* BUSCADOR */
 buscador.addEventListener("input", function() {
-
-    const texto = buscador.value.toLowerCase();
-    const peliculasUsuario = document.querySelectorAll("#lista-pendientes li, #lista-vistas li");
-
-    peliculasUsuario.forEach(function(li) {
-
-        const contenido = li.firstChild.textContent.toLowerCase();
-
-        if (contenido.includes(texto)) {
-            li.style.display = "";
-        } else {
-            li.style.display = "none";
-        }
-
-    });
-
+    filtrarElementos(buscador.value);
 });
+
+function filtrarElementos(texto) {
+    const filtro = texto.toLowerCase();
+    const peliculasUsuario = document.querySelectorAll("#lista-pendientes li, #lista-vistas li");
+    peliculasUsuario.forEach(function(li) {
+        const contenido = li.firstChild.textContent.toLowerCase();
+        if (contenido.includes(filtro)) {
+            li.classList.remove("hidden");
+        } else {
+            li.classList.add("hidden");
+        }
+    });
+}

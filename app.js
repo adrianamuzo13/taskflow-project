@@ -79,53 +79,44 @@ formVistas.addEventListener("submit", (e) => {
     }
 });
 
-/* MOSTRAR PENDIENTES */
-function mostrarPendientes() {
+/**
+ * Renderiza cualquier lista de películas en su contenedor correspondiente.
+ * @param {Array} lista - Array de películas.
+ * @param {HTMLElement} contenedor - Elemento UL donde se insertarán los LIs.
+ * @param {string} claveStorage - Clave para localStorage.
+ */
+function renderizarLista(lista, contenedor, claveStorage) {
+    contenedor.innerHTML = "";
 
-    listaPendientes.innerHTML = "";
 
-    for (let i = 0; i < peliculasPendientes.length; i++) {
 
+    lista.forEach((item, i) => {
+        // Usando template strings para el contenido
         const li = document.createElement("li");
-        li.textContent = peliculasPendientes[i];
+        li.innerHTML = `
+            ${item}
+            <button class="borrar-btn" style="margin-left:8px;">🗑</button>
+        `;
 
-        const boton = document.createElement("button");
-        boton.textContent = "🗑";
+        const boton = li.querySelector(".borrar-btn");
 
         boton.addEventListener("click", function() {
-            peliculasPendientes.splice(i, 1);
-            localStorage.setItem("pendientes", JSON.stringify(peliculasPendientes));
-            mostrarPendientes();
+            lista.splice(i, 1);
+            localStorage.setItem(claveStorage, JSON.stringify(lista));
+            renderizarLista(lista, contenedor, claveStorage);
         });
 
-        li.appendChild(boton);
-        listaPendientes.appendChild(li);
-    }
+        contenedor.appendChild(li);
+    });
 }
 
+// Funciones específicas para cada lista aprovechando la genérica
+function mostrarPendientes() {
+    renderizarLista(peliculasPendientes, listaPendientes, "pendientes");
+}
 
-/* MOSTRAR VISTAS */
 function mostrarVistas() {
-
-    listaVistas.innerHTML = "";
-
-    for (let i = 0; i < peliculasVistas.length; i++) {
-
-        const li = document.createElement("li");
-        li.textContent = peliculasVistas[i];
-
-        const boton = document.createElement("button");
-        boton.textContent = "🗑";
-
-        boton.addEventListener("click", function() {
-            peliculasVistas.splice(i, 1);
-            localStorage.setItem("vistas", JSON.stringify(peliculasVistas));
-            mostrarVistas();
-        });
-
-        li.appendChild(boton);
-        listaVistas.appendChild(li);
-    }
+    renderizarLista(peliculasVistas, listaVistas, "vistas");
 }
 
 

@@ -16,3 +16,25 @@ Ejemplos de mejoras:
 - Usar composer me permite poder modificar codigo sin miedo a romper la estructura y los enlaces entre archivos.
 Le pedí a composer que creara `utils.js` para la funciones de estrellas y tiempo que también actualizara los `import` en app.js 
 Así conseguí un codigo mas limpio y organizado, con una clara separación entre la lógica de ayuda y el manejo del DOM.
+
+
+Instalación y uso de MCP (Model Context Protocol)
+
+Es un estandar abierto que permite a los modelos de IA conectarse de forma segura a datos y herramientas locales o remotos.
+
+He configurado con éxito un servidor MCP de tipo **Filesystem**. 
+Servidor:`@modelcontextprotocol/server-filesystem`
+Estado: Conectado (14 herramientas habilitadas)
+Ruta autorizada: `C:\Users\adri1\Desktop\taskflow-project`
+
+Las 5 consultas que he realizado para verificar el funcionamiento, ejecuté las siguientes acciones mediante la IA:
+
+1. Listado de todos los archivos en la raiz del proyecto.
+2. Lectura y conteo de funciones en `app.js` mediante acceso directo a disco.
+3. Inspección de archivos en docs/ai no abiertos en el editor.
+4. Búsqueda global de localStorage y en que líneas aparece.
+5. Verificación del archivo `.gitignore` para asegurar la seguridad del repositorio.
+
+
+
+

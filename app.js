@@ -90,22 +90,50 @@ vistasForm.addEventListener("submit", (e) => {
  * @param {string} claveStorage - Nombre de la clave en localStorage para esta lista.
  */
 function renderizarLista(lista, contenedor, claveStorage) {
-    contenedor.innerHTML = "";
+    const limpiarContenedor = (elemento) => {
+        elemento.textContent = "";
+    };
 
-    lista.forEach((item, i) => {
+    const persistirLista = (clave, datos) => {
+        localStorage.setItem(clave, JSON.stringify(datos));
+    };
+
+    const eliminarItem = (indice) => {
+        lista.splice(indice, 1);
+        persistirLista(claveStorage, lista);
+        renderizarLista(lista, contenedor, claveStorage);
+    };
+
+    const crearBotonBorrar = (onClick) => {
+        const boton = document.createElement("button");
+        boton.className = "borrar-btn";
+        boton.style.marginLeft = "8px";
+        boton.textContent = "🗑";
+        boton.addEventListener("click", onClick);
+        return boton;
+    };
+
+    const crearItemLista = (titulo, indice) => {
         const li = document.createElement("li");
-        li.innerHTML = `
-            ${item}
-            <button class="borrar-btn" style="margin-left:8px;">🗑</button>
-        `;
-        const boton = li.querySelector(".borrar-btn");
-        boton.addEventListener("click", function() {
-            lista.splice(i, 1);
-            localStorage.setItem(claveStorage, JSON.stringify(lista));
-            renderizarLista(lista, contenedor, claveStorage);
-        });
-        contenedor.appendChild(li);
-    });
+
+        const texto = document.createElement("span");
+        texto.textContent = titulo;
+
+        const botonBorrar = crearBotonBorrar(() => eliminarItem(indice));
+
+        li.appendChild(texto);
+        li.appendChild(botonBorrar);
+        return li;
+    };
+
+    const construirFragmento = () => {
+        const fragment = document.createDocumentFragment();
+        lista.forEach((item, i) => fragment.appendChild(crearItemLista(item, i)));
+        return fragment;
+    };
+
+    limpiarContenedor(contenedor);
+    contenedor.appendChild(construirFragmento());
 }
 
 /**

@@ -1,11 +1,11 @@
 import { generarEstrellas, convertirMinutosAHoras } from "./utils.js";
 
-/* PELICULAS PENDIENTES */
+
 const pendientesForm = document.getElementById("form-pendientes");
 const pendientesInput = document.getElementById("input-pendientes");
 const pendientesLista = document.getElementById("lista-pendientes");
 
-/* PELICULAS VISTAS */
+
 const vistasForm = document.getElementById("form-vistas");
 const vistasInput = document.getElementById("input-vistas");
 const vistasLista = document.getElementById("lista-vistas");
@@ -152,18 +152,19 @@ function renderizarLista(lista, contenedor, claveStorage) {
     contenedor.appendChild(construirFragmento());
 }
 
-/**
+
  * Renderiza la lista de películas pendientes utilizando renderizarLista.
  */
 function mostrarPendientes() {
     renderizarLista(peliculasPendientes, pendientesLista, "pendientes");
+    // Actualiza el número en el HTML
+    document.getElementById("cont-pendientes").textContent = peliculasPendientes.length;
 }
 
-/**
- * Renderiza la lista de películas vistas utilizando renderizarLista.
- */
 function mostrarVistas() {
     renderizarLista(peliculasVistas, vistasLista, "vistas");
+    // Actualiza el número en el HTML
+    document.getElementById("cont-vistas").textContent = peliculasVistas.length;
 }
 
 /**

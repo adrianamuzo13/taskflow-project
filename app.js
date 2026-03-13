@@ -26,18 +26,10 @@ if (localStorage.getItem("vistas")) {
     mostrarVistas();
 }
 
-/**
- * Convierte un string a Capital Case (cada palabra con su primera letra mayúscula).
- * @param {string} str - El string a convertir.
- * @returns {string} El string convertido.
- */
 function toCapitalCase(str) {
-    return str
-        .toLowerCase()
-        .split(' ')
-        .filter(Boolean)
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
+  return str.toLowerCase().split(' ').filter(Boolean)
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
 }
 
 /**
@@ -52,8 +44,10 @@ pendientesForm.addEventListener("submit", function(e) {
 
     if (titulo !== "") {
         titulo = toCapitalCase(titulo);
-        // Validar si el título ya existe usando .some()
-        if (peliculasPendientes.some(peli => peli === titulo)) {
+        const existe = peliculasPendientes.some(peli =>
+            peli.toLowerCase() === titulo.toLowerCase()
+        );
+        if (existe) {
             alert('Esta película ya está en la lista');
             return;
         }
@@ -182,16 +176,11 @@ buscadorInput.addEventListener("input", function() {
  * @param {string} texto - Texto a buscar (criterio de filtrado).
  */
 function filtrarElementos(texto) {
-    const filtro = texto.toLowerCase();
-    const peliculasUsuario = document.querySelectorAll("#lista-pendientes li, #lista-vistas li");
-    peliculasUsuario.forEach(function(li) {
-        const contenido = li.firstChild.textContent.toLowerCase();
-        if (contenido.includes(filtro)) {
-            li.classList.remove("hidden");
-        } else {
-            li.classList.add("hidden");
-        }
-    });
+  const filtro = texto.toLowerCase();
+  document.querySelectorAll("li").forEach(li => {
+    const contenido = li.firstChild.textContent.toLowerCase();
+    li.classList.toggle("hidden", !contenido.includes(filtro));
+  });
 }
 
 document.getElementById("btn-vaciar-todo").addEventListener("click", () => {

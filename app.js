@@ -153,6 +153,7 @@ function renderizarLista(lista, contenedor, claveStorage) {
 }
 
 
+/**
  * Renderiza la lista de películas pendientes utilizando renderizarLista.
  */
 function mostrarPendientes() {

@@ -115,13 +115,26 @@ function renderizarLista(lista, contenedor, claveStorage) {
 
     const crearItemLista = (titulo, indice) => {
         const li = document.createElement("li");
-
+    
         const texto = document.createElement("span");
         texto.textContent = titulo;
-
+    
+        const botonEditar = document.createElement("button");
+        botonEditar.textContent = "✏️";
+        botonEditar.style.marginLeft = "8px";
+        botonEditar.onclick = () => {
+            const nuevoTitulo = prompt("Edita el nombre:", titulo);
+            if (nuevoTitulo && nuevoTitulo.trim() !== "") {
+                lista[indice] = toCapitalCase(nuevoTitulo.trim()); // Usamos tu función de formato
+                persistirLista(claveStorage, lista);
+                renderizarLista(lista, contenedor, claveStorage);
+            }
+        };
+    
         const botonBorrar = crearBotonBorrar(() => eliminarItem(indice));
-
+    
         li.appendChild(texto);
+        li.appendChild(botonEditar);
         li.appendChild(botonBorrar);
         return li;
     };

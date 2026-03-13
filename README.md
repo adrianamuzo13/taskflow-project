@@ -1,136 +1,91 @@
-# Taskflow Project
+**🏆 TaskFlow – Gestión de Películas Premios Oscar**
+Aplicación web interactiva desarrollada como proyecto de prácticas para la gestión y organización de títulos cinematográficos premiados.
 
-App web estática (HTML + JavaScript) para explorar una selección de películas de los Premios Oscar por género y gestionar **tus listas personales** de:
+El proyecto combina una interfaz temática inspirada en la estética de la Academia con un gestor de listas dinámico, utilizando JavaScript Vanilla y Tailwind CSS, con persistencia de datos mediante LocalStorage.
 
-- **Películas por ver** (pendientes)
-- **Películas vistas**
 
-Incluye **buscador**, **edición/eliminación**, **vaciar listas**, **modo oscuro** y persistencia con **LocalStorage**.
+Puedes visualizar la aplicación desplegada en el siguiente enlace:
+👉 <https://taskflow-project-176y.vercel.app>
 
-## Demo rápida
+Tecnologías Utilizadas
+HTML5: Estructura semántica y maquetación.
 
-- Abre `index.html` en el navegador.
-- Tus listas se guardan automáticamente en el navegador (LocalStorage).
+Tailwind CSS: Framework de estilos para un diseño responsive y moderno.
 
-## Tecnologías
+JavaScript (ES6+): Lógica de la aplicación, manipulación del DOM y gestión de eventos.
 
-- **HTML + JavaScript (ES Modules)**
-- **Tailwind CSS** (compilado a `output.css`)
+LocalStorage: API de persistencia para mantener los datos en el navegador.
 
-## Requisitos
+Git & GitHub: Control de versiones y alojamiento del código.
 
-- **Node.js** (para compilar Tailwind).  
-  Si solo quieres ver la web, basta con abrir `index.html`.
+🎯 Funcionalidades Principales
+Gestión de Listas: Añadir títulos a las categorías de "Pendientes" y "Vistas".
 
-## Instalación
+Edición y Borrado: Modificación de títulos existentes mediante cuadros de diálogo y eliminación con confirmación de seguridad.
 
-```bash
+Buscador en Tiempo Real: Filtrado dinámico de ambas listas de forma simultánea según el texto introducido.
+
+Sistema de Formateo: Conversión automática de títulos a Capital Case para mantener la coherencia visual.
+
+Modo Oscuro: Alternancia entre tema claro y oscuro con persistencia de preferencia.
+
+Persistencia de Datos: Guardado automático de las listas para que la información no se pierda al recargar la página.
+
+Limpieza Global: Botón de vaciado de seguridad para resetear todas las listas del usuario.
+
+📂 Estructura del Proyecto
+index.html: Interfaz principal y estructura del tablero.
+
+app.js: Lógica central (gestión de tareas, filtros y eventos).
+
+utils.js: Funciones de utilidad (generación de estrellas, conversiones).
+
+input.css: Archivo de entrada con la configuración temática de Tailwind.
+
+output.css: CSS compilado y optimizado para producción.
+
+📚 Documentación de Funciones
+El código ha sido documentado siguiendo el estándar JSDoc para facilitar su mantenimiento.
+
+toCapitalCase(str)
+Recibe una cadena de texto y la devuelve formateada (ej: "el padrino" -> "El Padrino"). Elimina espacios adicionales y normaliza las mayúsculas.
+
+filtrarElementos(texto)
+Función encargada de la búsqueda dinámica. Recorre todos los elementos <li> y aplica la clase hidden a aquellos que no coincidan con el criterio de búsqueda, comparando el contenido en minúsculas para mayor precisión.
+
+updateStats()
+Calcula y actualiza los contadores de la interfaz, mostrando el número total de películas en cada sección y asegurando que las estadísticas reflejen el estado actual del LocalStorage.
+
+🧪 Ejemplos de Uso
+Añadir una película
+Escribe el nombre de la película en el campo correspondiente (Pendientes o Vistas) y pulsa el botón Añadir. El sistema aplicará el formato correcto y guardará el título automáticamente.
+
+Editar o marcar como vista
+Para cambiar el nombre de una película, pulsa el botón Editar (icono de lápiz). Si quieres mover una película de lista, el flujo de la aplicación permite gestionar ambos inventarios de forma independiente.
+
+Filtrar la colección
+Utiliza la barra de búsqueda superior. A medida que escribas (por ejemplo: "Oscar"), la interfaz ocultará automáticamente las películas que no contengan esa palabra en su título.
+
+🧠 Desarrollo asistido por IA
+Durante la creación de este proyecto se integró el uso de Inteligencia Artificial (IA) mediante Cursor para:
+
+Generar una estructura inicial de la documentación técnica.
+
+Refactorizar funciones de filtrado para mejorar su eficiencia.
+
+Sugerir mejoras en el sistema de diseño mediante clases de Tailwind.
+
+Toda la documentación y el código sugerido fueron revisados y corregidos manualmente, adaptándolos a los requisitos específicos de la práctica y garantizando su correcto funcionamiento en el entorno del navegador.
+
+▶️ Instalación y Ejecución
+Clona el repositorio en tu equipo.
+
+Instala las dependencias necesarias:
+
+Bash
 npm install
-```
+Para compilar Tailwind en tiempo real:
 
-## Desarrollo (Tailwind en watch)
-
-Este proyecto usa el CLI de Tailwind para compilar `input.css` → `output.css` en modo watch:
-
-```bash
+Bash
 npm run dev
-```
-
-Luego abre `index.html` en tu navegador.
-
-## Estructura del proyecto
-
-- `index.html`: interfaz principal
-- `app.js`: lógica de listas (pendientes/vistas), buscador y acciones
-- `utils.js`: utilidades compartidas
-- `input.css`: entrada de Tailwind
-- `output.css`: CSS compilado (usado por `index.html`)
-
-## Scripts
-
-- `npm run dev`: compila Tailwind en modo watch (`output.css`)
-
----
-
-## Documentación de funciones
-
-### `app.js`
-
-| Función | Descripción | Parámetros |
-|--------|-------------|------------|
-| `toCapitalCase(str)` | Convierte un string a Capital Case (cada palabra con su primera letra mayúscula). | `str` (string) – Texto a formatear |
-| `renderizarLista(lista, contenedor, claveStorage)` | Renderiza una lista de películas en el DOM. Crea items con botones para editar y eliminar, y persiste en `localStorage`. | `lista` (array) – Títulos de películas; `contenedor` (HTMLElement) – UL donde renderizar; `claveStorage` (string) – Clave en `localStorage` |
-| `mostrarPendientes()` | Renderiza la lista de películas pendientes y actualiza el contador. | — |
-| `mostrarVistas()` | Renderiza la lista de películas vistas y actualiza el contador. | — |
-| `filtrarElementos(texto)` | Filtra ambas listas mostrando solo los elementos cuyo texto contiene `texto`. Oculta el resto con la clase `hidden`. | `texto` (string) – Criterio de búsqueda |
-
-### `utils.js`
-
-| Función | Descripción | Parámetros |
-|--------|-------------|------------|
-| `generarEstrellas(valoracion)` | Genera una representación de estrellas (1–5) para valorar una película. Devuelve cadenas como `"★★★☆☆"`. | `valoracion` (number) – Valor entre 1 y 5 |
-| `convertirMinutosAHoras(minutos)` | Convierte minutos (número o array) a un objeto con total en horas y minutos. | `minutos` (number \| number[]) – Minutos a convertir |
-
----
-
-## Ejemplos de uso
-
-### 1. Añadir película pendiente
-
-1. Ve a la sección **Películas por ver**.
-2. Escribe el título en el campo *Añadir título...* (ej.: `el padrino`).
-3. Pulsa **Añadir**.
-
-El título se guarda en mayúscula por palabra (*El Padrino*) y se evitan duplicados.
-
-### 2. Añadir película vista
-
-1. Ve a la sección **Películas vistas**.
-2. Escribe el título en el campo *Añadir título...*.
-3. Pulsa **Añadir**.
-
-### 3. Editar o eliminar una película
-
-- **Editar**: Haz clic en ✏️ junto al título, escribe el nuevo nombre en el cuadro de diálogo y confirma.
-- **Eliminar**: Haz clic en 🗑 y confirma en el cuadro.
-
-### 4. Buscar en mis listas
-
-1. En el campo *Buscar en mis listas...* escribe parte del título (ej.: `padrino`).
-2. Solo se muestran las películas cuyo título contiene el texto buscado.
-3. Borra el texto para ver de nuevo todas las películas.
-
-### 5. Vaciar todas las listas
-
-1. Pulsa el botón **Vaciar todas las listas**.
-2. Confirma en el cuadro de diálogo.
-
-Se borran pendientes y vistas en `localStorage` y en la interfaz.
-
-### 6. Navegar por géneros
-
-Usa los enlaces del menú lateral (**Drama**, **Animación**, **Comedia**, etc.) para ir directamente a cada sección de películas.
-
-### 7. Modo oscuro
-
-Pulsa el botón circular en la esquina superior derecha para alternar entre modo claro y oscuro.
-
----
-
-## Uso programático de `utils.js`
-
-```javascript
-import { generarEstrellas, convertirMinutosAHoras } from "./utils.js";
-
-// Mostrar valoración con estrellas
-console.log(generarEstrellas(3));     // "★★★☆☆"
-console.log(generarEstrellas(4.7));   // "★★★★★"
-
-// Convertir duración
-const { horas, minutos } = convertirMinutosAHoras(152);
-console.log(`${horas}h ${minutos}min`);  // "2h 32min"
-
-// Con un array de minutos
-const total = convertirMinutosAHoras([90, 120, 45]);
-console.log(total);  // { horas: 4, minutos: 15 }
-```
+Abre index.html en tu navegador preferido.

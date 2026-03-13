@@ -15,7 +15,7 @@ const buscadorInput = document.getElementById("buscador");
 let peliculasPendientes = [];
 let peliculasVistas = [];
 
-/* CARGAR DATOS GUARDADOS */
+
 if (localStorage.getItem("pendientes")) {
     peliculasPendientes = JSON.parse(localStorage.getItem("pendientes"));
     mostrarPendientes();
@@ -99,9 +99,12 @@ function renderizarLista(lista, contenedor, claveStorage) {
     };
 
     const eliminarItem = (indice) => {
-        lista.splice(indice, 1);
-        persistirLista(claveStorage, lista);
-        renderizarLista(lista, contenedor, claveStorage);
+        const tituloPeli = lista[indice];
+        if (confirm(`¿Estás seguro de que quieres eliminar "${tituloPeli}"?`)) {
+            lista.splice(indice, 1);
+            persistirLista(claveStorage, lista);
+            renderizarLista(lista, contenedor, claveStorage);
+        }
     };
 
     const crearBotonBorrar = (onClick) => {

@@ -192,3 +192,14 @@ function filtrarElementos(texto) {
         }
     });
 }
+
+document.getElementById("btn-vaciar-todo").addEventListener("click", () => {
+    if (confirm("¿Quieres borrar ABSOLUTAMENTE TODO? Esta acción no se puede deshacer.")) {
+        peliculasPendientes = [];
+        peliculasVistas = [];
+        localStorage.removeItem("pendientes");
+        localStorage.removeItem("vistas");
+        mostrarPendientes();
+        mostrarVistas();
+    }
+});

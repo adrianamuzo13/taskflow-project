@@ -6,17 +6,17 @@ Se le ha pedido a ChatGPT y a Claude que expliquen 3 conceptos: DOM, Event Loop 
 
 "Estoy trabajando en un proyecto de lista de películas (TaskFlow). Por favor, explícame estos 3 conceptos técnicos de JavaScript de forma clara, con profundidad técnica y un ejemplo de código para cada uno: 1. DOM, 2. Event Loop y 3. Hoisting"
 
-# CLARIDAD
+**CLARIDAD**
     ChatGPT: Desarrollo más pedagogico y visual, muestra ejemplos con esquemas simples que facilitan la compresión. Pra alguien que está aprendiendo es ideal.
 
     Claude: Explicación técnica y clara. Los ejemplos son estructurados y usa comentarios para explicar la teoria. En la explicación usa lenguaje tecnico dando por hecho que ya hay conocimientos previos.
 
-# PROFUNDIDAD
+**PROFUNDIDAD**
     ChatGPT: No profundiza tanto como lo hace Claude. Explica bien pero solo lo "básico", no profundiza mucho el efcto que tiene el codigo.
     
     Claude: Profundiza mucho en los ejemplos. En el DOM , introduce "Reflow", recálculo del diseño. En Event Loop, explica diferencia entre dos conceptos que la otra IA no. Y con el Hoisting, explica el Temporal Dead ZOne de forma más tecnica.
 
-# EJEMPLOS
+**EJEMPLOS**
     ChatGPT: Los ejemplos son genericos. Faciles de seguir pero no estan relacionados con un proyecto real, sirven para entender la teoría.
 
     Claude: Usó nombres de variables que podrían aparecer en mi proyecto para poder asi entenderlos dentro del contexto e incluso dio ejemplos para mejorar el codigo

@@ -194,12 +194,17 @@ function filtrarElementos(texto) {
 }
 
 document.getElementById("btn-vaciar-todo").addEventListener("click", () => {
-    if (confirm("¿Quieres borrar ABSOLUTAMENTE TODO? Esta acción no se puede deshacer.")) {
-        peliculasPendientes = [];
-        peliculasVistas = [];
-        localStorage.removeItem("pendientes");
-        localStorage.removeItem("vistas");
-        mostrarPendientes();
-        mostrarVistas();
-    }
+    const confirmacion = window.confirm("¿Quieres borrar ABSOLUTAMENTE TODO? Esta acción no se puede deshacer.");
+    if (!confirmacion) return;
+
+    // Vacía los arrays de películas pendientes y vistas, y elimina sus registros del almacenamiento local
+    peliculasPendientes.length = 0;
+    peliculasVistas.length = 0;
+    localStorage.removeItem("pendientes");
+    localStorage.removeItem("vistas");
+
+    // Refresca las listas en la interfaz
+    mostrarPendientes();
+    mostrarVistas();
+
 });

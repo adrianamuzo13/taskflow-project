@@ -2,7 +2,6 @@
 
 @theme {
   --font-oscar: "Times New Roman", Times, serif;
-
   --color-bg: #fdf0d5; 
   --color-primary: #540b0e;
   --color-secondary: #9e2a2b;
@@ -10,5 +9,113 @@
   --color-gold: #fcbf49;
 }
 
-/* ESTO ES PARA QUE EL MODO OSCURO FUNCIONE CON LA CLASE 'dark' */
-@custom-variant dark (&:where(.dark, .dark *));
+/* CONFIGURACIÓN DE MODO OSCURO */
+@variant dark (&:where(.dark, .dark *));
+
+@layer components {
+  .app-body {
+    @apply bg-bg text-gray-900 transition-colors duration-500 min-h-screen dark:bg-slate-950 dark:text-gray-100;
+  }
+
+  .app-header {
+    @apply bg-gradient-to-r from-primary to-secondary text-white p-4 shadow-xl;
+    font-family: var(--font-oscar);
+  }
+
+  /* ESTRUCTURA PRINCIPAL */
+  .app-shell {
+    @apply flex flex-col md:flex-row md:h-[calc(100vh-80px)] overflow-hidden w-full;
+  }
+
+  /* BOTÓN DE CAMBIO DE MODO */
+  .dark-toggle {
+    @apply fixed top-6 right-6 z-50 p-2 bg-gold rounded-full shadow-lg active:scale-90 transition-all cursor-pointer hover:rotate-12;
+  }
+
+/* MENÚ LATERAL */
+  .app-aside {
+    @apply w-full md:w-64 p-6 bg-black/5 dark:bg-white/5 border-r border-black/10 dark:border-white/10 md:overflow-y-auto shrink-0;
+  }
+  .aside-title {
+    @apply text-xl font-bold mb-4 border-b-2 border-gold text-primary dark:text-gold uppercase text-sm tracking-widest;
+  }
+  .aside-link {
+    @apply hover:text-gold dark:hover:text-secondary transition-colors;
+  }
+
+  /* TARJETAS DE PELÍCULAS */
+  .grid-peliculas { @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10; }
+
+  .oscar-card {
+    @apply relative bg-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg border border-black/5 dark:border-white/10 transition-all hover:-translate-y-2
+  }
+ .oscar-poster{ @apply w-full aspect-[2/3] object-cover block;}
+
+  /* BOTONES DE BARRA DE VISTA */
+ .btn-barra-vista {
+  @apply w-full py-3 px-4 bg-primary text-white dark:bg-gold dark:text-primary 
+    font-bold text-[11px] uppercase tracking-widest rounded-lg 
+    shadow-md transition-all cursor-pointer text-center border-none
+    flex items-center justify-center gap-2;
+  }
+  .btn-barra-vista:hover {
+  @apply scale-[1.02] shadow-lg brightness-110;
+  }
+  .btn-barra-vista.visto {
+  @apply bg-gray-400 dark:bg-slate-700 text-white/70 shadow-none cursor-not-allowed scale-100 brightness-100;
+  }
+
+/* ESTILO DEL CHECK (✓) */
+ .icon-check {
+  @apply text-lg text-white dark:text-primary/70 scale-0 transition-transform duration-300 ease-out;
+  display: inline-block; 
+}
+  .btn-barra-vista.visto .icon-check {
+    @apply scale-100; /* Crece cuando está visto */
+  }
+
+  /* BADGE GANADORA Y NOMINADA */
+
+  /* .oscar-badge { @apply inline-block mt-2 px-3 py-1 text-[10px] rounded-full uppercase font-bold; }*/
+    .oscar-badge {
+    @apply inline-block mt-2 px-3 py-1 bg-secondary text-white text-xs rounded-full uppercase font-bold tracking-wider shadow-sm;
+  }
+
+  .oscar-badge--win { 
+    @apply bg-gold text-primary border border-primary/20;
+  }
+  .oscar-badge--nom { 
+    @apply bg-secondary text-white;
+  }
+
+
+  /* INPUT DE BÚSQUEDA */
+  .input-oscar {
+    @apply w-full p-3 rounded-xl bg-white dark:bg-slate-800 border-2 border-primary focus:border-gold outline-none transition-all shadow-sm text-gray-900 dark:text-white;
+  }
+
+  .buscador {
+    @apply mb-10 p-6 bg-black/10 dark:bg-white/10 rounded-3xl border border-black/10 dark:border-white/10 transition-all duration-300;
+    
+    position: relative;
+    z-index: auto;
+  }
+  .box-buscador{
+    @apply flex-1 md:flex-none flex flex-col items-center px-6 py-2
+  }
+  .name-buscador{
+    @apply text-[10px] uppercase tracking-tighter font-bold 
+  }
+  
+
+  /* SECCIÓN DE VISTAS */
+  .seccion-vistas {
+    @apply mt-8 mb-12 p-6 bg-black/5 dark:bg-white/5 rounded-3xl border border-black/5;
+  }
+  .lista-title {
+    @apply text-xl font-bold flex items-center gap-2 text-primary dark:text-gold uppercase tracking-widest font-oscar;
+  }
+
+  .hidden { display: none; }
+
+}

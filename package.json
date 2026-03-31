@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-  "dev": "npx @tailwindcss/cli -i ./input.css -o ./output.css --watch"
-},
+    "dev": "npx @tailwindcss/cli -i ./input.css -o ./output.css --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adrianamuzo13/taskflow-project.git"
@@ -19,9 +19,10 @@
   },
   "homepage": "https://github.com/adrianamuzo13/taskflow-project#readme",
   "devDependencies": {
-    "tailwindcss": "^4.2.1"
+    "tailwindcss": "^4.2.2"
   },
   "dependencies": {
+    "@tailwindcss/cli": "^4.2.2",
     "autoprefixer": "^10.4.27",
     "postcss": "^8.5.8"
   }

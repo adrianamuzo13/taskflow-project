@@ -39,8 +39,11 @@
                 <li><a href="#accion" class="aside-link">Acción</a></li>
                 <li><a href="#cienciaficcion" class="aside-link">Ciencia Ficción</a></li>
             </ul>
-            <h2 class="aside-title">Mi Actividad</h2>
+            <h2 class="aside-title">Actividad</h2>
             <ul class="space-y-3 font-medium">
+                <li>
+                    <a href="#comunidad" class="aside-link flex items-center gap-3">El Muro de la Comunidad</a>
+                </li>
                 <li><a href="#seccion-vistas" class="aside-link group flex items-center gap-3">
                     Películas vistas</a>
                 </li>
@@ -117,6 +120,30 @@
             
                 <div class="h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent my-20"></div>
 
+                <section id="comunidad" class="mb-20 px-4">
+                    <div class="bg-primary/5 dark:bg-white/5 p-8 rounded-3xl  border-primary/10 dark:border-white/10 shadow-inner">
+                        <h2 class="section-title !text-left !mb-2 ">El Muro de la Comunidad</h2>
+                        
+                        <p class="text-sm opacity-70 mb-8 italic max-w-3xl mb-10">
+                            "Detrás de cada estatuilla hay una historia que la cámara no llegó a captar.
+                            Este espacio está reservado para compartir datos curiosos, secretos de rodaje 
+                            o detalles que solo un verdadero fan de los Oscars conoce"
+                        </p>
+
+                        <div class="flex flex-col md:flex-row gap-3 mb-8">
+                            <input type="text" id="input-curiosidad" 
+                                placeholder="Escribe algo interesante sobre una película..." 
+                                class="input-oscar flex-1 !bg-white dark:!bg-slate-900">
+                            <button id="btn-anadir-curiosidad" 
+                                    class="bg-primary text-white px-8 py-3 rounded-xl font-bold hover:bg-secondary transition-all cursor-pointer shadow-lg uppercase text-[11px] tracking-widest">
+                                Compartir
+                            </button>
+                        </div>
+
+                        <div id="muro-curiosidades" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                    </div>
+                </section>
+
                 <section id="seccion-vistas" class="mb-20">
                     <h2 class="section-title">Películas Vistas</h2>
                     <div id="contenedor-vistas" class="flex flex-col gap-3">
@@ -125,6 +152,7 @@
                         </p>
                     </div>
                 </section>
+
             </div>
         </main>
     </div>

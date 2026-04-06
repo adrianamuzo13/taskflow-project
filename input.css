@@ -47,7 +47,7 @@
   .grid-peliculas { @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10; }
 
   .oscar-card {
-    @apply relative bg-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg border border-black/5 dark:border-white/10 transition-all hover:-translate-y-2
+    @apply  bg-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg border border-brelativelack/5 dark:border-white/10 transition-all hover:-translate-y-2
   }
  .oscar-poster{ @apply w-full aspect-[2/3] object-cover block;}
 

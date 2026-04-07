@@ -359,47 +359,59 @@ window.addEventListener("load", () => {
     if (!muro) return;
     muro.innerHTML = "";
 
-    aportesComunidad.forEach((nota) => {
-      const item = document.createElement("div");
-      item.className = `p-6 rounded-xl border-l-4 transition-all ${
-        nota.completed
-          ? "bg-gray-100 dark:bg-slate-900 border-gray-400 opacity-50"
-          : "bg-white dark:bg-slate-800 border-gold shadow-md"
-      }`;
+    
+    muro.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10";
+    aportesComunidad.forEach(nota => {
+        const item = document.createElement('div');
+        
+        item.className = "flex items-center justify-between p-5 bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/10 rounded-xl shadow-sm transition-all hover:bg-black/10 dark:hover:bg-white/15 mb-5";
+        
+        item.innerHTML = `
+            <div class="flex flex-col gap-1 pr-4">
+                <span class="text-[9px] uppercase font-black tracking-widest text-primary dark:text-gold opacity-80">
+                    ${nota.createdAt}
+                </span>
+                
+                <p class="text-sm italic font-medium text-gray-800 dark:text-gray-100 leading-relaxed">
+                    "${nota.title}"
+                </p>
+            </div>
 
-      // El contenido de cada aporte
-      item.innerHTML = `
-            <div class="flex justify-between items-start mb-4">
-                <span class="text-[8px] font-black opacity-30 uppercase tracking-widest">${nota.createdAt}</span>
-                <input type="checkbox" ${nota.completed ? "checked" : ""} 
-                       onclick="toggleAporte(${nota.id})" class="w-4 h-4 cursor-pointer accent-gold">
-            </div>
-            <p class="text-[13px] leading-relaxed ${nota.completed ? "line-through opacity-50" : ""}">
-                "${nota.title}"
-            </p>
-            <div class="mt-4 flex justify-end">
-                <button onclick="eliminarAporte(${nota.id})" 
-                        class="text-[9px] text-red-600 font-bold hover:underline cursor-pointer">
-                    ELIMINAR
-                </button>
-            </div>
+            <button onclick="eliminarAporte(${nota.id})" 
+                    class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors cursor-pointer p-2 flex-shrink-0"
+                    title="Eliminar">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 6h18"></path>
+                    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                </svg>
+            </button>
         `;
-      muro.appendChild(item);
+        muro.appendChild(item);
     });
-  }
+}
 
-  window.toggleAporte = (id) => {
-    const nota = aportesComunidad.find((n) => n.id === id);
-    if (nota) {
-      nota.completed = !nota.completed;
-      renderizarMuro();
-    }
-  };
+  function publicarAporte() {
+    const texto = inputCuri.value.trim();
+    if (texto === "") return;
 
-  window.eliminarAporte = (id) => {
-    aportesComunidad = aportesComunidad.filter((n) => n.id !== id);
+    const nuevoAporte = {
+        id: Date.now(),
+        title: texto,
+        // Ya no necesitamos la propiedad "completed"
+        createdAt: new Date().toLocaleDateString()
+    };
+
+    aportesComunidad.push(nuevoAporte);
+    inputCuri.value = "";
     renderizarMuro();
-  };
+}
+
+// Función global para eliminar
+window.eliminarAporte = (id) => {
+    aportesComunidad = aportesComunidad.filter(n => n.id !== id);
+    renderizarMuro();
+};
 
   // Listeners
   if (btnCuri) btnCuri.addEventListener("click", publicarAporte);

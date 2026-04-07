@@ -66,7 +66,7 @@ Localiza una película en la galería principal y pulsa el botón **"Marcar como
 
 A medida que escribes (ej: "Joker" o "Drama"), la aplicación filtrará en tiempo real tanto la galería principal como tu lista de películas vistas y el muro de curiosidades.
 
-## Muro de Curiosidades
+### Muro de Curiosidades
 
 En la sección inferior, escribe un dato interesante sobre el cine en el campo de texto. Pulsa **"Compartir"** y tu nota aparecerá con un formato de tarjeta elegante y la fecha de publicación.
 

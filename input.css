@@ -119,3 +119,21 @@
   .hidden { display: none; }
 
 }
+
+  /* BOTÓN DE ELIMINAR EN LAS TARJETAS DE VISTAS */
+  .btn-eliminar {
+      @apply absolute top-2 right-2 w-8 h-8 z-20 bg-red-600 text-white rounded-full 
+            border-2 border-white shadow-lg flex items-center justify-center 
+            cursor-pointer transition-all hover:bg-red-700 active:scale-90;
+    }
+
+
+  /* PARA LAS ESTRELLAS INTERACTIVAS */
+  .estrella-interactiva {
+    @apply transition-all duration-200 cursor-pointer;
+  }
+
+.estrella-interactiva.text-gold {
+  color: #fcbf49; /* El color oro de tu tema */
+  text-shadow: 0 0 10px rgba(252, 191, 73, 0.3);
+}

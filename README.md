@@ -54,25 +54,21 @@ Recibe una cadena de texto y la devuelve formateada (ej: `"el padrino"` → `"El
 
 Función encargada de la búsqueda dinámica. Recorre todos los elementos `<li>` y aplica la clase `hidden` a aquellos que no coincidan con el criterio de búsqueda, comparando el contenido en minúsculas para mayor precisión.
 
-### `mostrarPendientes()` / `mostrarVistas()`
-
-Actualizan los contadores de la interfaz, mostrando el número total de películas en cada sección y asegurando que las estadísticas reflejen el estado actual del LocalStorage.
-
 ---
 
 ## 🧪 Ejemplos de uso
 
-### Añadir una película
+### Marcar como vista
 
-Escribe el nombre de la película en el campo correspondiente (Pendientes o Vistas) y pulsa el botón **Añadir**. El sistema aplicará el formato correcto y guardará el título automáticamente.
+Localiza una película en la galería principal y pulsa el botón **"Marcar como vista"**. La tarjeta se moverá automáticamente a la sección inferior.
 
-### Editar o marcar como vista
+### Búsqueda inteligente
 
-Para cambiar el nombre de una película, pulsa el botón **Editar** (icono de lápiz). Si quieres mover una película de lista, el flujo de la aplicación permite gestionar ambos inventarios de forma independiente.
+A medida que escribes (ej: "Joker" o "Drama"), la aplicación filtrará en tiempo real tanto la galería principal como tu lista de películas vistas y el muro de curiosidades.
 
-### Filtrar la colección
+### Muro de Curiosidades
 
-Utiliza la barra de búsqueda superior. A medida que escribas (por ejemplo: "Oscar"), la interfaz ocultará automáticamente las películas que no contengan esa palabra en su título.
+En la sección inferior, escribe un dato interesante sobre el cine en el campo de texto. Pulsa **"Compartir"** y tu nota aparecerá con un formato de tarjeta elegante y la fecha de publicación.
 
 ---
 

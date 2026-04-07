@@ -44,6 +44,7 @@ Tiempo aproximado: 1 minuto.
 
 Resultado: La IA utilizó el método .filter(), lo que redujo todo mi código de 6 líneas a una sola línea muy fácil de leer.
 
+
 **Tareas relacionadas con tu proyecto**
 
 4. Formateo de Títulos (Capital Case)
@@ -82,7 +83,6 @@ Tiempo aproximado: 20 minutos.
 Resultado: Intenté manipular el CSS (display: none) directamente en cada elemento. Me costó mucho acceder al texto correcto dentro del li sin borrar accidentalmente los botones de editar o borrar.
 
 **Usando IA**
-
 Tiempo aproximado: 3 minutos.
 
 Resultado: La IA sugirió una lógica basada en clases CSS y el método .includes(). También me explicó cómo usar firstChild.textContent para leer solo el nombre de la película y no el texto de los botones

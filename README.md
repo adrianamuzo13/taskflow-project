@@ -35,11 +35,15 @@ El proyecto combina una interfaz temática inspirada en la estética de la Acade
 
 taskflow-project/
 ├── client/              # Frontend (Interfaz de usuario)
+
 │   ├── js/
-│   │   └── app.js       # Lógica principal y renderizado del DOM
+│   │   └── app.js       # Lógica principal y renderizado del 
+
 │   ├── src/api/
 │   │   └── client.js    # Cliente API (Fetch) para comunicación con el backend
+
 │   └── index.html       # Estructura principal con estados de red
+
 ├── server/              # Backend (Servidor Node.js)
 │   ├── config/          # Variables de entorno y configuración
 │   ├── controllers/     # Lógica de negocio (task.controller.js)

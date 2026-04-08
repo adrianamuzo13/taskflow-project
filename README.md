@@ -32,20 +32,22 @@ El proyecto combina una interfaz temática inspirada en la estética de la Acade
 
 ## 📂 Estructura del proyecto
 
+```
 taskflow-project/
-├── client/              # Frontend (Interfaz de usuario)
+├── client/                # Frontend (Interfaz de usuario)
 │   ├── js/
-│   │   └── app.js       # Lógica principal y renderizado del DOM
+│   │   └── app.js         # Lógica principal y renderizado del DOM
 │   ├── src/api/
-│   │   └── client.js    # Cliente API (Fetch) para comunicación con el backend
-│   └── index.html       # Estructura principal con estados de red
-├── server/              # Backend (Servidor Node.js)
-│   ├── config/          # Variables de entorno y configuración
-│   ├── controllers/     # Lógica de negocio (task.controller.js)
-│   ├── routes/          # Definición de Endpoints (task.routes.js)
-│   ├── services/        # Manipulación de datos (capa de persistencia)
-│   └── index.js         # Punto de entrada del servidor
-└── utils.js             # Funciones auxiliares globales
+│   │   └── client.js      # Cliente API (Fetch) para comunicación con el backend
+│   └── index.html         # Estructura principal con estados de red
+├── server/                # Backend (Servidor Node.js)
+│   ├── config/            # Variables de entorno y configuración
+│   ├── controllers/       # Lógica de negocio (task.controller.js)
+│   ├── routes/            # Definición de Endpoints (task.routes.js)
+│   ├── services/          # Manipulación de datos (capa de persistencia)
+│   └── index.js           # Punto de entrada del servidor
+└── utils.js               # Funciones auxiliares globales
+```
 ---
 
 ## 📚 Documentación de funciones

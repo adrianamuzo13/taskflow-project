@@ -124,12 +124,13 @@ Se ha implementado un middleware de error de cuatro parámetros (err, req, res, 
 La API se expone en el punto de entrada base: http://localhost:3000/api/v1/tasks.
 
 **Ejemplo de uso con fetch (Frontend)**
-***📥 Obtener todos los aportes***
+
+**📥 Obtener todos los aportes**
 
 const response = await fetch('http://localhost:3000/api/v1/tasks');
 const data = await response.json(); // Retorna un Array de objetos con 'titulo'
 
-***📤 Publicar una nueva curiosidad***
+**📤 Publicar una nueva curiosidad**
 
 await fetch('http://localhost:3000/api/v1/tasks', {
     method: 'POST',
@@ -137,9 +138,10 @@ await fetch('http://localhost:3000/api/v1/tasks', {
     body: JSON.stringify({ titulo: "El Padrino ganó 3 Oscars" }) // Validación: mín. 3 caracteres
 });
 
-***🗑️ Eliminar un aporte***
 
-JavaScript
+**🗑️ Eliminar un aporte**
+
+
 await fetch(`http://localhost:3000/api/v1/tasks/${id}`, {
     method: 'DELETE'
 });

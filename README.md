@@ -32,6 +32,7 @@ El proyecto combina una interfaz temática inspirada en la estética de la Acade
 
 ## 📂 Estructura del proyecto
 
+
 taskflow-project/
 ├── client/              # Frontend (Interfaz de usuario)
 │   ├── js/
@@ -46,6 +47,7 @@ taskflow-project/
 │   ├── services/        # Manipulación de datos (capa de persistencia)
 │   └── index.js         # Punto de entrada del servidor
 └── utils.js             # Funciones auxiliares globales
+
 ---
 
 ## 📚 Documentación de funciones

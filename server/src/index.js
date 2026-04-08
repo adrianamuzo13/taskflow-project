@@ -1,15 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const { PORT } = require('./config/env');
+const PORT = process.env.PORT || 3000;
 const taskRoutes = require('./routes/task.routes'); // Importamos las rutas
 
 const app = express();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: '*', 
+  methods: ['GET', 'POST', 'DELETE']
+}));
 app.use(express.json());
 app.use('/api/v1/tasks', taskRoutes);
 app.get('/health', (req, res) => res.json({ status: "ok" }));
+app.listen(PORT, () => console.log(`Servidor listo en puerto ${PORT}`));
 
 // Manejo Global de Excepciones 
 app.use((err, req, res, next) => {

@@ -32,14 +32,20 @@ El proyecto combina una interfaz temática inspirada en la estética de la Acade
 
 ## 📂 Estructura del proyecto
 
-| Archivo     | Descripción                                                       |
-|------------|-------------------------------------------------------------------|
-| `index.html` | Interfaz principal y estructura del tablero.                     |
-| `app.js`     | Lógica central (gestión de tareas, filtros y eventos).           |
-| `utils.js`   | Funciones de utilidad (generación de estrellas, conversiones).   |
-| `input.css`  | Archivo de entrada con la configuración temática de Tailwind.    |
-| `output.css` | CSS compilado y optimizado para producción.                      |
-
+taskflow-project/
+├── client/              # Frontend (Interfaz de usuario)
+│   ├── js/
+│   │   └── app.js       # Lógica principal y renderizado del DOM
+│   ├── src/api/
+│   │   └── client.js    # Cliente API (Fetch) para comunicación con el backend
+│   └── index.html       # Estructura principal con estados de red
+├── server/              # Backend (Servidor Node.js)
+│   ├── config/          # Variables de entorno y configuración
+│   ├── controllers/     # Lógica de negocio (task.controller.js)
+│   ├── routes/          # Definición de Endpoints (task.routes.js)
+│   ├── services/        # Manipulación de datos (capa de persistencia)
+│   └── index.js         # Punto de entrada del servidor
+└── utils.js             # Funciones auxiliares globales
 ---
 
 ## 📚 Documentación de funciones
@@ -100,3 +106,40 @@ Toda la documentación y el código sugerido fueron revisados y corregidos manua
    ```
 
 4. Abre `index.html` en tu navegador preferido.
+
+## ⚙️ Middleware y Funcionamiento Técnico
+
+El backend utiliza Middlewares de Express para gestionar el flujo de las peticiones (Request-Response Cycle).
+
+**1. Middleware de Análisis (JSON Parsing)**
+Se utiliza express.json() para interceptar las peticiones entrantes. Su función es transformar el cuerpo de la petición (Payload) de texto plano a un objeto JavaScript accesible mediante req.body.
+
+**2. Middleware de CORS**
+El middleware cors() permite que el frontend (ejecutándose normalmente en el puerto 5500) pueda realizar peticiones al backend (puerto 3000) de forma segura, evitando bloqueos por políticas de seguridad del navegador.
+
+**3. Manejo Global de Excepciones**
+Se ha implementado un middleware de error de cuatro parámetros (err, req, res, next). Este actúa como un embudo que captura cualquier fallo en los controladores, devolviendo respuestas semánticas (400, 404 o 500) en lugar de exponer el stack trace al cliente, mejorando la seguridad y la experiencia de usuario.
+
+## 📡 API REST: Guía de Interacción
+La API se expone en el punto de entrada base: http://localhost:3000/api/v1/tasks.
+
+**Ejemplo de uso con fetch (Frontend)**
+***📥 Obtener todos los aportes***
+
+const response = await fetch('http://localhost:3000/api/v1/tasks');
+const data = await response.json(); // Retorna un Array de objetos con 'titulo'
+
+***📤 Publicar una nueva curiosidad***
+
+await fetch('http://localhost:3000/api/v1/tasks', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ titulo: "El Padrino ganó 3 Oscars" }) // Validación: mín. 3 caracteres
+});
+
+***🗑️ Eliminar un aporte***
+
+JavaScript
+await fetch(`http://localhost:3000/api/v1/tasks/${id}`, {
+    method: 'DELETE'
+});

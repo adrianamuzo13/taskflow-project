@@ -226,8 +226,6 @@ const peliculas = [
 
 let aportesComunidad = [];
 let inputCuriElement = null;
-let loader = null;
-let errorMsg = null;
  
 async function cargarCuriosidades() {
   try {

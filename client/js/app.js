@@ -459,16 +459,14 @@ window.addEventListener("load", () => {
         actualizarContadores();
     }
  
- 
     // 2. CLIC EN ELIMINAR (De la lista de vistas)
     const btnEliminar = e.target.closest(".btn-eliminar");
     if (btnEliminar) {
-        // Busca la tarjeta completa 
         const tarjetaVistas = btnEliminar.closest("[id^='item-']");
-        if (!tarjetaVistas) return; // Si no la encuentra, sale
- 
+        if (!tarjetaVistas) return;
+
         const titulo = tarjetaVistas.querySelector("h3").innerText;
- 
+
         // Reactiva el botón en la galería principal
         const todasLasCards = document.querySelectorAll(".oscar-card");
         todasLasCards.forEach(card => {
@@ -480,20 +478,19 @@ window.addEventListener("load", () => {
                 if (icon) icon.classList.add("hidden");
             }
         });
- 
+
     // Borra la tarjeta y actualiza los contadores
     tarjetaVistas.remove();
     actualizarContadores();
- 
-    // Si no quedan pelis, pone el mensaje de aviso
-    const contenedorVistas = document.getElementById("contenedor-vistas");
-    if (contenedorVistas && contenedorVistas.children.length === 0) {
-        contenedorVistas.innerHTML = `<p class="col-span-full text-center py-10 opacity-50 italic border-2 border-dashed border-black/10 rounded-2xl">Aquí aparecerán las películas que marques como vistas.</p>`;
+
+    const contenedor = document.getElementById("contenedor-vistas"); 
+    if (contenedor && contenedor.children.length === 0) {
+        contenedor.innerHTML = `<p class="col-span-full text-center py-10 opacity-50 italic border-2 border-dashed border-black/10 rounded-2xl">Aquí aparecerán las películas que marques como vistas.</p>`;
     }
 }
-    
-    // 3. CLIC EN LAS ESTRELLAS DE VALORACIÓN
-    if (e.target.classList.contains("estrella-interactiva")) {
+
+// 3. CLIC EN LAS ESTRELLAS DE VALORACIÓN
+if (e.target.classList.contains("estrella-interactiva")) {
         const star = e.target;
         const valor = parseInt(star.dataset.valor);
         const contenedor = star.closest(".selector-estrellas");

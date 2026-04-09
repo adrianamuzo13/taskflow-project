@@ -1,6 +1,5 @@
 import { generarEstrellas } from '../../utils.js'; 
 import { taskAPI } from '../src/api/client.js';
-
 // BASE DE DATOS PELÍCULAS
 const peliculas = [
   // DRAMA
@@ -354,7 +353,7 @@ window.addEventListener("load", () => {
                   "${nota.titulo}"
               </p>
           </div>
-          <button onclick="eliminarAporte('${nota.id}')" 
+          <button onclick="eliminarAporte('${nota._id || nota.id}')"
                   class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300 transition-colors cursor-pointer p-2 flex-shrink-0"
                   title="Eliminar">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">

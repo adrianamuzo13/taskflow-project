@@ -7,17 +7,10 @@
     }
   ],
   "routes": [
-    {
-      "src": "/api/v1/tasks(.*)",
-      "dest": "server/src/index.js"
-    },
-    {
-      "src": "/health",
-      "dest": "server/src/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "server/src/index.js"
-    }
+    { "src": "/api/v1/tasks(.*)", "dest": "server/src/index.js" },
+    { "src": "/health", "dest": "server/src/index.js" },
+    { "src": "/js/(.*)", "dest": "server/src/index.js" },
+    { "src": "/src/(.*)", "dest": "server/src/index.js" },
+    { "src": "/(.*)", "dest": "server/src/index.js" }
   ]
 }

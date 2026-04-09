@@ -1,6 +1,11 @@
 import { generarEstrellas } from '../utils.js';
 import { taskAPI } from '../src/api/client.js';
 
+let aportesComunidad = [];
+let inputCuriElement = null;
+let loader = null;
+let errorMsg = null;
+
 // BASE DE DATOS PELÍCULAS
 const peliculas = [
   // DRAMA
@@ -224,10 +229,7 @@ const peliculas = [
   },
 ];
 
-let aportesComunidad = [];
-let inputCuriElement = null;
-let loader = null;
-let errorMsg = null;
+
  
 async function cargarCuriosidades() {
   try {
@@ -301,7 +303,7 @@ window.addEventListener("load", () => {
   inputCuriElement = DOM.inputCuri;
   loader = DOM.loader;
   errorMsg = DOM.errorMsg;
-  
+
   // FUNCIÓN PARA RENDERIZAR CADA TARJETA 
   function renderizar() {
     const idsGrids = ["grid-drama", "grid-animacion", "grid-comedia", "grid-accion", "grid-cienciaficcion"]; // LISTA DE GRIDS PARA LIMPIAR

@@ -295,9 +295,7 @@ window.addEventListener("load", () => {
     buscadorInput,
     btnCuri,
     inputCuri, 
-    muro,
-    loader,
-    errorMsg
+    muro
   } = DOM;
  
   // Asigna a las variables globales para que cargarCuriosidades y eliminarAporte puedan usarlas

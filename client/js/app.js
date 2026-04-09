@@ -225,12 +225,10 @@ const peliculas = [
 ];
 
 let aportesComunidad = [];
-let muroElement = null;
 let inputCuriElement = null;
 let loader = null;
 let errorMsg = null;
  
-// FUNCIÓN GLOBAL: necesita acceder a muroElement, loader, errorMsg (vars de módulo)
 async function cargarCuriosidades() {
   try {
     if (loader) loader.style.display = "block";

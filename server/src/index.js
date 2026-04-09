@@ -8,17 +8,19 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const clientPath = path.join(process.cwd(), 'Client');
+const clientPath = path.join(__dirname, '../../client');
 
 app.use(express.static(clientPath));
 
 app.use('/api/v1/tasks', taskRoutes);
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(clientPath, 'index.html'), (err) => {
+    const indexPath = path.join(clientPath, 'index.html');
+    
+    res.sendFile(indexPath, (err) => {
         if (err) {
-            console.error("Error al enviar index.html:", err);
-            res.status(500).send("Error: No se encontró index.html en la carpeta Client.");
+            console.error("Error enviando index.html:", err);
+            res.status(500).send(`Error: No se encontró index.html. El servidor buscó en: ${indexPath}`);
         }
     });
 });

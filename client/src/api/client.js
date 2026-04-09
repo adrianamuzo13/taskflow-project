@@ -1,4 +1,4 @@
-const API_URL = 'https://taskflow-project-brown.vercel.app/api/v1/tasks'; 
+const API_URL = "https://taskflow-project-brown.vercel.app/api/v1/tasks"; 
 
 export const taskAPI = {
     // Obtener todas las curiosidades

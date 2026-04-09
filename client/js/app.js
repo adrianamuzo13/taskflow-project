@@ -3,6 +3,7 @@ import { taskAPI } from '../src/api/client.js';
 
 let aportesComunidad = [];
 let inputCuriElement = null;
+let muroElement = null;
 let loader = null;
 let errorMsg = null;
 

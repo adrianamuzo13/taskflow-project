@@ -297,8 +297,7 @@ window.addEventListener("load", () => {
   // Asigna a las variables globales para que cargarCuriosidades y eliminarAporte puedan usarlas
   muroElement = DOM.muro;
   inputCuriElement = DOM.inputCuri;
-  loader = DOM.loader;
-  errorMsg = DOM.errorMsg;
+
  
   // FUNCIÓN PARA RENDERIZAR CADA TARJETA 
   function renderizar() {

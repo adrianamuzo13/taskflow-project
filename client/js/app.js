@@ -226,13 +226,16 @@ const peliculas = [
 
 let aportesComunidad = [];
 let inputCuriElement = null;
+let loader = null;
+let errorMsg = null;
  
 async function cargarCuriosidades() {
   try {
-    if (loader) loader.style.display = "block";
+    if (loader) loader.style.display = "block"; 
+    
     const datos = await taskAPI.getAll();
  
-    if (!muroElement) return;
+    if (!muroElement) return; 
     muroElement.innerHTML = "";
  
     datos.forEach(nota => {
@@ -280,9 +283,8 @@ window.addEventListener("load", () => {
     inputCuri: document.getElementById("input-curiosidad"),
     btnCuri: document.getElementById("btn-anadir-curiosidad"),
     muro: document.getElementById("muro-curiosidades"),
-    // NUEVAS VARIABLES DE RED
-  loader: document.getElementById("loader"),
-  errorMsg: document.getElementById("error-msg")
+    loader: document.getElementById("loader"),
+    errorMsg: document.getElementById("error-msg")
   };
  
   const {
@@ -297,8 +299,9 @@ window.addEventListener("load", () => {
   // Asigna a las variables globales para que cargarCuriosidades y eliminarAporte puedan usarlas
   muroElement = DOM.muro;
   inputCuriElement = DOM.inputCuri;
-
- 
+  loader = DOM.loader;
+  errorMsg = DOM.errorMsg;
+  
   // FUNCIÓN PARA RENDERIZAR CADA TARJETA 
   function renderizar() {
     const idsGrids = ["grid-drama", "grid-animacion", "grid-comedia", "grid-accion", "grid-cienciaficcion"]; // LISTA DE GRIDS PARA LIMPIAR

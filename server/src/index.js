@@ -15,10 +15,10 @@ app.use(express.static(clientPath));
 app.use('/api/v1/tasks', taskRoutes);
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(clientPath, 'src/index.html'), (err) => {
+    res.sendFile(path.join(clientPath, 'index.html'), (err) => {
         if (err) {
             console.error("Error al enviar index.html:", err);
-            res.status(500).send("No se pudo cargar el frontend. Verifica las rutas del servidor.");
+            res.status(500).send("Error: No se encontró index.html en la carpeta Client.");
         }
     });
 });

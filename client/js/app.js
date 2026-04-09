@@ -1,5 +1,6 @@
-import { generarEstrellas } from '../../utils.js'; 
+import { generarEstrellas } from '../utils.js';
 import { taskAPI } from '../src/api/client.js';
+
 // BASE DE DATOS PELÍCULAS
 const peliculas = [
   // DRAMA
@@ -223,128 +224,28 @@ const peliculas = [
   },
 ];
 
-// VARIABLES GLOBALES
 let aportesComunidad = [];
 let muroElement = null;
 let inputCuriElement = null;
-
-window.addEventListener("load", () => {
-
-  // VARIABLES DEL DOM
-  const DOM = {
-    contenedorVistas: document.getElementById("contenedor-vistas"),
-    contVistas: document.getElementById("cont-vistas"),
-    contPendientes: document.getElementById("cont-pendientes"),
-    buscadorInput: document.getElementById("buscador"),
-    inputCuri: document.getElementById("input-curiosidad"),
-    btnCuri: document.getElementById("btn-anadir-curiosidad"),
-    muro: document.getElementById("muro-curiosidades"),
-    // NUEVAS VARIABLES DE RED
-  loader: document.getElementById("loader"),
-  errorMsg: document.getElementById("error-msg")
-  };
-
-  const {
-    contenedorVistas,
-    contVistas,
-    buscadorInput,
-    btnCuri,
-    inputCuri, 
-    muro,
-    loader,
-    errorMsg
-  } = DOM;
-
-  // Asignamos a las variables globales para que window.eliminarAporte pueda usarlas
-  muroElement = DOM.muro;
-  inputCuriElement = DOM.inputCuri;
-
-  // FUNCIÓN PARA RENDERIZAR CADA TARJETA 
-  function renderizar() {
-    const idsGrids = ["grid-drama", "grid-animacion", "grid-comedia", "grid-accion", "grid-cienciaficcion"]; // LISTA DE GRIDS PARA LIMPIAR
-    idsGrids.forEach(id => {
-      const g = document.getElementById(id);
-      if (g) g.innerHTML = "";
-    });
-
-    peliculas.forEach((peli) => {
-      const generoLimpio = peli.genero.toLowerCase()
-        .replace(/\s+/g, '')
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
-      const gridId = `grid-${generoLimpio}`;
-      const grid = document.getElementById(gridId); // BUSCA EL GRID
-
-      if (grid) { // SI EL GRID EXISTE, CREA LA TARJETA
-        const badgeClass =
-          peli.estado === "Ganadora" ? "oscar-badge--win" : "oscar-badge--nom";
-        const tarjeta = document.createElement("div");
-        tarjeta.className = "oscar-card h-fit flex flex-col";
-        tarjeta.innerHTML = `
-            <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
-            <div class="p-4 flex-grow flex flex-col">
-                <h3 class="font-bold text-xl">${peli.titulo}</h3>
-                <p class="text-sm font-bold opacity-70">${peli.año}</p>
-                <p class="text-sm opacity-70 mb-2">${peli.genero}</p>
-                <div>
-                    <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
-                </div>
-            </div>
-            <button class="btn-barra-vista w-full mt-auto bg-primary hover:bg-secondary text-white py-4 font-bold uppercase text-[11px] tracking-widest transition-all duration-300 flex justify-center items-center cursor-pointer border-none rounded-b-[inherit]" title="Marcar como vista">
-                    <span class="icon-check hidden mr-2">✓</span>
-                    <span class="texto-boton">Marcar como vista</span>
-            </button>
-        `;
-        grid.appendChild(tarjeta);
-      }
-    });
-
-    actualizarContadores();
-  }
-
-  // BUSCADOR
-  buscadorInput.addEventListener("input", (e) => {
-    const filtro = e.target.value.toLowerCase();
-    const tarjetas = document.querySelectorAll(".oscar-card");
-
-    //FILTRA LAS TARJETAS
-    tarjetas.forEach((tarjeta) => {
-      const titulo = tarjeta.querySelector("h3").innerText.toLowerCase();
-      tarjeta.classList.toggle("hidden", !titulo.includes(filtro));
-    });
-
-    //FILTRA LAS SECCIONES
-    const secciones = document.querySelectorAll(
-      "section[id]:not(#seccion-vistas):not(#seccion-comunidad)"
-    );
-
-    secciones.forEach((seccion) => {
-      const tarjetasEnSeccion = Array.from(seccion.querySelectorAll(".oscar-card"));
-      const tieneVisibles = tarjetasEnSeccion.some(t => !t.classList.contains("hidden"));
-      seccion.classList.toggle("hidden", !tieneVisibles && filtro !== "");
-    });
-  });
-
-
-  async function cargarCuriosidades() {
+let loader = null;
+let errorMsg = null;
+ 
+// FUNCIÓN GLOBAL: necesita acceder a muroElement, loader, errorMsg (vars de módulo)
+async function cargarCuriosidades() {
   try {
     if (loader) loader.style.display = "block";
     const datos = await taskAPI.getAll();
-    
+ 
     if (!muroElement) return;
     muroElement.innerHTML = "";
-
+ 
     datos.forEach(nota => {
-      // Generamos una fecha legible si el servidor no envía 'createdAt'
-      const fecha = nota.createdAt || new Date().toLocaleDateString('es-ES', {
-          day: '2-digit',
-          month: '2-digit',
-          year: 'numeric',
-      });
-
+      const fecha = nota.createdAt
+        ? new Date(nota.createdAt).toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' })
+        : new Date().toLocaleDateString('es-ES', { day: '2-digit', month: '2-digit', year: 'numeric' });
+ 
       const item = document.createElement('div');
       item.className = "flex items-center justify-between p-5 bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/10 rounded-xl shadow-sm transition-all hover:bg-black/10 dark:hover:bg-white/15 mb-5";
-      
       item.innerHTML = `
           <div class="flex flex-col gap-1 pr-4">
               <span class="text-[9px] uppercase font-black tracking-widest text-primary dark:text-gold opacity-80">
@@ -371,33 +272,133 @@ window.addEventListener("load", () => {
     if (loader) loader.style.display = "none";
   }
 }
-  // --- FUNCIÓN PARA PUBLICAR (Sustituye a la antigua) ---
+ 
+window.addEventListener("load", () => {
+ 
+  // VARIABLES DEL DOM
+  const DOM = {
+    contenedorVistas: document.getElementById("contenedor-vistas"),
+    contVistas: document.getElementById("cont-vistas"),
+    contPendientes: document.getElementById("cont-pendientes"),
+    buscadorInput: document.getElementById("buscador"),
+    inputCuri: document.getElementById("input-curiosidad"),
+    btnCuri: document.getElementById("btn-anadir-curiosidad"),
+    muro: document.getElementById("muro-curiosidades"),
+    // NUEVAS VARIABLES DE RED
+  loader: document.getElementById("loader"),
+  errorMsg: document.getElementById("error-msg")
+  };
+ 
+  const {
+    contenedorVistas,
+    contVistas,
+    buscadorInput,
+    btnCuri,
+    inputCuri, 
+    muro,
+    loader,
+    errorMsg
+  } = DOM;
+ 
+  // Asigna a las variables globales para que cargarCuriosidades y eliminarAporte puedan usarlas
+  muroElement = DOM.muro;
+  inputCuriElement = DOM.inputCuri;
+  loader = DOM.loader;
+  errorMsg = DOM.errorMsg;
+ 
+  // FUNCIÓN PARA RENDERIZAR CADA TARJETA 
+  function renderizar() {
+    const idsGrids = ["grid-drama", "grid-animacion", "grid-comedia", "grid-accion", "grid-cienciaficcion"]; // LISTA DE GRIDS PARA LIMPIAR
+    idsGrids.forEach(id => {
+      const g = document.getElementById(id);
+      if (g) g.innerHTML = "";
+    });
+ 
+    peliculas.forEach((peli) => {
+      const generoLimpio = peli.genero.toLowerCase()
+        .replace(/\s+/g, '')
+        .normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+ 
+      const gridId = `grid-${generoLimpio}`;
+      const grid = document.getElementById(gridId); // BUSCA EL GRID
+ 
+      if (grid) { // SI EL GRID EXISTE, CREA LA TARJETA
+        const badgeClass =
+          peli.estado === "Ganadora" ? "oscar-badge--win" : "oscar-badge--nom";
+        const tarjeta = document.createElement("div");
+        tarjeta.className = "oscar-card h-fit flex flex-col";
+        tarjeta.innerHTML = `
+            <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
+            <div class="p-4 flex-grow flex flex-col">
+                <h3 class="font-bold text-xl">${peli.titulo}</h3>
+                <p class="text-sm font-bold opacity-70">${peli.año}</p>
+                <p class="text-sm opacity-70 mb-2">${peli.genero}</p>
+                <div>
+                    <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
+                </div>
+            </div>
+            <button class="btn-barra-vista w-full mt-auto bg-primary hover:bg-secondary text-white py-4 font-bold uppercase text-[11px] tracking-widest transition-all duration-300 flex justify-center items-center cursor-pointer border-none rounded-b-[inherit]" title="Marcar como vista">
+                    <span class="icon-check hidden mr-2">✓</span>
+                    <span class="texto-boton">Marcar como vista</span>
+            </button>
+        `;
+        grid.appendChild(tarjeta);
+      }
+    });
+ 
+    actualizarContadores();
+  }
+ 
+  // BUSCADOR
+  buscadorInput.addEventListener("input", (e) => {
+    const filtro = e.target.value.toLowerCase();
+    const tarjetas = document.querySelectorAll(".oscar-card");
+ 
+    //FILTRA LAS TARJETAS
+    tarjetas.forEach((tarjeta) => {
+      const titulo = tarjeta.querySelector("h3").innerText.toLowerCase();
+      tarjeta.classList.toggle("hidden", !titulo.includes(filtro));
+    });
+ 
+    //FILTRA LAS SECCIONES
+    const secciones = document.querySelectorAll(
+      "section[id]:not(#seccion-vistas):not(#seccion-comunidad)"
+    );
+ 
+    secciones.forEach((seccion) => {
+      const tarjetasEnSeccion = Array.from(seccion.querySelectorAll(".oscar-card"));
+      const tieneVisibles = tarjetasEnSeccion.some(t => !t.classList.contains("hidden"));
+      seccion.classList.toggle("hidden", !tieneVisibles && filtro !== "");
+    });
+  });
+ 
+ 
+  // FUNCIÓN PARA PUBLICAR 
   async function publicarAporte() {
     const texto = inputCuri.value.trim();
     if (!texto) return;
-
+ 
     try {
       if (errorMsg) errorMsg.textContent = "";
       if (loader) loader.style.display = "block";
-
-      // Llamada a la API de Node.js
+ 
       await taskAPI.create(texto);
       
       inputCuri.value = "";
       await cargarCuriosidades(); // Refresca el muro
-
+ 
     } catch (err) {
       if (errorMsg) errorMsg.textContent = "⚠️ " + err.message;
     } finally {
       if (loader) loader.style.display = "none";
     }
   }
-
-  // --- EVENTOS ---
+ 
+  // EVENTOS 
   if (btnCuri) {
     btnCuri.addEventListener('click', publicarAporte);
   }
-
+ 
   if (inputCuri) {
     inputCuri.addEventListener("keypress", (e) => {
       if (e.key === "Enter") {
@@ -406,13 +407,12 @@ window.addEventListener("load", () => {
       }
     });
   }
-
-  // Lanzamos la carga inicial del servidor
+ 
   cargarCuriosidades();
-
+ 
   // LÓGICA DE INTERACCIÓN (CLICS) 
   document.addEventListener("click", (e) => {
-
+ 
     // 1. CLIC EN "MARCAR COMO VISTA"
     const btn = e.target.closest(".btn-barra-vista");
     if (btn && !btn.classList.contains("visto")) {
@@ -420,11 +420,11 @@ window.addEventListener("load", () => {
         const titulo = tarjeta.querySelector("h3").innerText;
         const img = tarjeta.querySelector("img").src;
         const infoExtra = tarjeta.querySelector("p").innerText;
-
+ 
       // Evitar duplicados
       const idLimpio = `item-${titulo.replace(/\s+/g, "")}`;
         if (document.getElementById(idLimpio)) return;
-
+ 
       btn.classList.add("visto", "opacity-50");
       btn.querySelector(".texto-boton").innerText = "Vista";
       
@@ -437,7 +437,7 @@ window.addEventListener("load", () => {
               <img src="${img}" class="w-full aspect-[2/3] object-cover rounded-2xl shadow-md block" alt="${titulo}">
               <button class="btn-eliminar"> ✕</button>
           </div>
-
+ 
           <div class="flex flex-col px-1">
               <h3 class="font-bold text-lg leading-tight text-primary dark:text-gold uppercase tracking-tighter">${titulo}</h3>
               <p class="text-xs opacity-60 font-medium mb-3">${infoExtra}</p>
@@ -451,26 +451,26 @@ window.addEventListener("load", () => {
               </div>
           </div>
       `;
-
+ 
         // ELIMINAR MENSAJE DE VACÍO (Si existe)
         const mensajeVacio = DOM.contenedorVistas.querySelector("p");
         if (mensajeVacio) mensajeVacio.remove();
-
-        // AÑADIR (Usa appendChild para que se acumulen)
-        DOM.contenedorVistas.appendChild(nuevoItem);
+ 
+        // AÑADIR
+        DOM.contenedorVistas.appendChild(nuevoItem); //appendChild para que se acumulen
         actualizarContadores();
     }
-
-
+ 
+ 
     // 2. CLIC EN ELIMINAR (De la lista de vistas)
     const btnEliminar = e.target.closest(".btn-eliminar");
     if (btnEliminar) {
-        // Busca la tarjeta completa (el contenedor que tiene el ID único)
+        // Busca la tarjeta completa 
         const tarjetaVistas = btnEliminar.closest("[id^='item-']");
-        if (!tarjetaVistas) return; // Si no la encuentra, salimos
-
+        if (!tarjetaVistas) return; // Si no la encuentra, sale
+ 
         const titulo = tarjetaVistas.querySelector("h3").innerText;
-
+ 
         // Reactiva el botón en la galería principal
         const todasLasCards = document.querySelectorAll(".oscar-card");
         todasLasCards.forEach(card => {
@@ -482,11 +482,11 @@ window.addEventListener("load", () => {
                 if (icon) icon.classList.add("hidden");
             }
         });
-
-    // Borra la tarjeta y actualizamos
+ 
+    // Borra la tarjeta y actualiza los contadores
     tarjetaVistas.remove();
     actualizarContadores();
-
+ 
     // Si no quedan pelis, pone el mensaje de aviso
     const contenedorVistas = document.getElementById("contenedor-vistas");
     if (contenedorVistas && contenedorVistas.children.length === 0) {
@@ -500,38 +500,36 @@ window.addEventListener("load", () => {
         const valor = parseInt(star.dataset.valor);
         const contenedor = star.closest(".selector-estrellas");
         const todas = contenedor.querySelectorAll(".estrella-interactiva");
-
+ 
         todas.forEach(s => {
             s.classList.toggle("text-gold", parseInt(s.dataset.valor) <= valor);
             s.classList.toggle("text-gray-300", parseInt(s.dataset.valor) > valor);
         });
     }
   });
-
+ 
   // CONTADORES
   function actualizarContadores() {
     const vistasCount = document.querySelectorAll("[id^='item-']").length;
     if (contVistas) contVistas.innerText = vistasCount;
-
+ 
     const total = peliculas.length;
     const contPendientesEl = document.getElementById("cont-pendientes");
     if (contPendientesEl) {
       contPendientesEl.innerText = total - vistasCount;
     }
   }
-
+ 
   // Al cargar la página, renderizamos todas las películas
   renderizar();
 });
-
+ 
 // FUNCIÓN PARA ELIMINAR UN APORTE
 window.eliminarAporte = async function(id) {
   if (confirm("¿Estás seguro de que quieres eliminar este aporte?")) {
     try {
-      // 1. Llamamos a la API para borrar de la base de datos
       await taskAPI.delete(id); 
       
-      // 2. Volvemos a cargar el muro para que desaparezca visualmente
       await cargarCuriosidades(); 
     } catch (err) {
       alert("No se pudo eliminar: " + err.message);

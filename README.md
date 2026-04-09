@@ -4,7 +4,7 @@ Aplicación web interactiva desarrollada como proyecto de prácticas para la ges
 
 El proyecto combina una interfaz temática inspirada en la estética de la Academia con un gestor de listas dinámico, utilizando **JavaScript Vanilla** y **Tailwind CSS**, con persistencia de datos mediante **LocalStorage**.
 
-👉 **[Ver aplicación desplegada](https://taskflow-project-176y.vercel.app)**
+👉 **[Ver aplicación desplegada](https://taskflow-project-brown.vercel.app)**
 
 ---
 
@@ -34,19 +34,26 @@ El proyecto combina una interfaz temática inspirada en la estética de la Acade
 
 ```
 taskflow-project/
-├── client/                # Frontend (Interfaz de usuario)
+├── Client/                 # Frontend (Interfaz de usuario)
 │   ├── js/
-│   │   └── app.js         # Lógica principal y renderizado del DOM
-│   ├── src/api/
-│   │   └── client.js      # Cliente API (Fetch) para comunicación con el backend
-│   └── index.html         # Estructura principal con estados de red
-├── server/                # Backend (Servidor Node.js)
-│   ├── config/            # Variables de entorno y configuración
-│   ├── controllers/       # Lógica de negocio (task.controller.js)
-│   ├── routes/            # Definición de Endpoints (task.routes.js)
-│   ├── services/          # Manipulación de datos (capa de persistencia)
-│   └── index.js           # Punto de entrada del servidor
-└── utils.js               # Funciones auxiliares globales
+│   │   └── app.js          # Lógica de renderizado y eventos
+│   └── src/
+│       ├── api/
+│       │   └── client.js   # Configuración de Fetch (URL de Vercel)
+│       ├── index.html      # Estructura principal
+│       ├── input.css       # Tailwind/CSS base
+│       └── styless.css     # Estilos finales
+├── server/                 # Backend (Servidor Node.js)
+│   ├── src/                # Código fuente del servidor
+│   │   ├── config/         # env.js (Configuración de entorno)
+│   │   ├── controllers/    # task.controller.js (Lógica de negocio)
+│   │   ├── routes/         # task.routes.js (Endpoints de la API)
+│   │   ├── services/       # task.service.js (Gestión de datos)
+│   │   └── index.js        # Punto de entrada (Configurado para Vercel)
+│   ├── .env                # Variables locales (No se suben a GitHub)
+│   └── package.json        # Dependencias y scripts de arranque
+├── vercel.json             # Configuración de despliegue (En la raíz)
+└── docs/                   # Documentación adicional
 ```
 ---
 
@@ -95,10 +102,16 @@ Toda la documentación y el código sugerido fueron revisados y corregidos manua
 ## ▶️ Instalación y ejecución
 
 1. Clona el repositorio en tu equipo.
+    git clone https://github.com/tu-usuario/taskflow-project.git
+
 2. Instala las dependencias necesarias:
 
    ```bash
-   npm install
+    cd server
+
+    npm install
+
+    npm start
    ```
 
 3. Para compilar Tailwind en tiempo real:
@@ -123,27 +136,26 @@ El middleware cors() permite que el frontend (ejecutándose normalmente en el pu
 Se ha implementado un middleware de error de cuatro parámetros (err, req, res, next). Este actúa como un embudo que captura cualquier fallo en los controladores, devolviendo respuestas semánticas (400, 404 o 500) en lugar de exponer el stack trace al cliente, mejorando la seguridad y la experiencia de usuario.
 
 ## 📡 API REST: Guía de Interacción
-La API se expone en el punto de entrada base: http://localhost:3000/api/v1/tasks.
+La API se expone en el punto de entrada base: https://taskflow-project-brown.vercel.app/api/v1/taskss.
 
 **Ejemplo de uso con fetch (Frontend)**
 
 **📥 Obtener todos los aportes**
 
-const response = await fetch('http://localhost:3000/api/v1/tasks');
+const response = await fetch('https://taskflow-project-brown.vercel.app/api/v1/tasks');
 const data = await response.json(); // Retorna un Array de objetos con 'titulo'
 
 **📤 Publicar una nueva curiosidad**
 
-await fetch('http://localhost:3000/api/v1/tasks', {
+await fetch('https://taskflow-project-brown.vercel.app/api/v1/tasks', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ titulo: "El Padrino ganó 3 Oscars" }) // Validación: mín. 3 caracteres
+    body: JSON.stringify({ titulo: "El Padrino ganó 3 Oscars" })
 });
 
 
 **🗑️ Eliminar un aporte**
 
-
-await fetch(`http://localhost:3000/api/v1/tasks/${id}`, {
+await fetch(`https://taskflow-project-brown.vercel.app/api/v1/tasks/${id}`, {
     method: 'DELETE'
 });

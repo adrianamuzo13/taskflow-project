@@ -325,7 +325,7 @@ window.addEventListener("load", () => {
         const badgeClass =
           peli.estado === "Ganadora" ? "oscar-badge--win" : "oscar-badge--nom";
         const tarjeta = document.createElement("div");
-        tarjeta.className = "oscar-card";
+        tarjeta.className = "oscar-card self-stretch";
        tarjeta.innerHTML = `
         <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
         <div class="p-4 flex-grow flex flex-col">        

@@ -328,7 +328,7 @@ window.addEventListener("load", () => {
         tarjeta.className = "oscar-card";
        tarjeta.innerHTML = `
         <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
-        <div class="p-4 flex-grow flex flex-col">        👈 aquí
+        <div class="p-4 flex-grow flex flex-col">        
             <h3 class="font-bold text-xl">${peli.titulo}</h3>
             <p class="text-sm font-bold opacity-70">${peli.año}</p>
             <p class="text-sm opacity-70 mb-2">${peli.genero}</p>
@@ -336,7 +336,7 @@ window.addEventListener("load", () => {
                 <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
             </div>
         </div>
-        <button class="btn-barra-vista ...">             👈 y aquí
+        <button class="btn-barra-vista ...">       
             <span class="icon-check hidden mr-2">✓</span>
             <span class="texto-boton">Marcar como vista</span>
         </button>

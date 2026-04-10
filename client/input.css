@@ -58,10 +58,7 @@
 
   /* BOTONES DE BARRA DE VISTA */
  .btn-barra-vista {
-  @apply w-full p-4 bg-primary text-white dark:bg-gold dark:text-primary 
-    font-bold text-[11px] uppercase tracking-widest
-    shadow-md transition-all cursor-pointer border-none
-    flex items-center justify-center gap-2;
+  @apply w-full p-4 bg-primary text-white dark:bg-gold dark:text-primary font-bold text-[11px] uppercase tracking-widest shadow-md transition-all cursor-pointer border-none flex items-center justify-center gap-2;
   }
   .btn-barra-vista:hover {
   @apply scale-[1.02] shadow-lg brightness-110;

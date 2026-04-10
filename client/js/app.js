@@ -326,21 +326,21 @@ window.addEventListener("load", () => {
           peli.estado === "Ganadora" ? "oscar-badge--win" : "oscar-badge--nom";
         const tarjeta = document.createElement("div");
         tarjeta.className = "oscar-card h-fit flex flex-col";
-        tarjeta.innerHTML = `
-            <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
-            <div class="p-4 flex-grow flex flex-col justify-between min-h-[140px]">
-                <h3 class="font-bold text-xl">${peli.titulo}</h3>
-                <p class="text-sm font-bold opacity-70">${peli.año}</p>
-                <p class="text-sm opacity-70 mb-2">${peli.genero}</p>
-                <div>
-                    <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
-                </div>
+       tarjeta.innerHTML = `
+        <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
+        <div class="p-4 flex-grow flex flex-col">        👈 aquí
+            <h3 class="font-bold text-xl">${peli.titulo}</h3>
+            <p class="text-sm font-bold opacity-70">${peli.año}</p>
+            <p class="text-sm opacity-70 mb-2">${peli.genero}</p>
+            <div>
+                <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
             </div>
-            <button class="btn-barra-vista w-full mt-auto bg-primary hover:bg-secondary text-white py-4 font-bold uppercase text-[11px] tracking-widest transition-all duration-300 flex justify-center items-center cursor-pointer border-none rounded-b-[inherit]" title="Marcar como vista">
-                    <span class="icon-check hidden mr-2">✓</span>
-                    <span class="texto-boton">Marcar como vista</span>
-            </button>
-        `;
+        </div>
+        <button class="btn-barra-vista ...">             👈 y aquí
+            <span class="icon-check hidden mr-2">✓</span>
+            <span class="texto-boton">Marcar como vista</span>
+        </button>
+    `;
         grid.appendChild(tarjeta);
       }
     });

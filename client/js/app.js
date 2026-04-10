@@ -328,7 +328,7 @@ window.addEventListener("load", () => {
         tarjeta.className = "oscar-card h-fit flex flex-col";
         tarjeta.innerHTML = `
             <img src="${peli.img}" class="oscar-poster w-full" alt="${peli.titulo}">
-            <div class="p-4 flex-grow flex flex-col">
+            <div class="p-4 flex-grow flex flex-col justify-between min-h-[140px]">
                 <h3 class="font-bold text-xl">${peli.titulo}</h3>
                 <p class="text-sm font-bold opacity-70">${peli.año}</p>
                 <p class="text-sm opacity-70 mb-2">${peli.genero}</p>

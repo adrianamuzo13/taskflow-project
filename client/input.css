@@ -34,7 +34,8 @@
 
 /* MENÚ LATERAL */
   .app-aside {
-    @apply w-full md:w-64 p-6 bg-black/5 dark:bg-white/5 border-r border-black/10 dark:border-white/10 md:overflow-y-auto shrink-0;
+    @apply w-full md:w-64 p-6 bg-black/5 dark:bg-white/5 border-r border-black/10 
+          dark:border-white/10 md:overflow-y-auto shrink-0;
   }
   .aside-title {
     @apply text-xl font-bold mb-4 border-b-2 border-gold text-primary dark:text-gold uppercase text-sm tracking-widest;
@@ -44,10 +45,14 @@
   }
 
   /* TARJETAS DE PELÍCULAS */
-  .grid-peliculas { @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10; }
+  .grid-peliculas { 
+  @apply grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch; 
+  }
 
   .oscar-card {
-    @apply  bg-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg border border-brelativelack/5 dark:border-white/10 transition-all hover:-translate-y-2
+  @apply bg-card dark:bg-slate-800 rounded-[12px] overflow-hidden shadow-lg 
+         border border-black/5 dark:border-white/10 transition-all hover:-translate-y-2 
+         flex flex-col h-full;
   }
  .oscar-poster{ @apply w-full aspect-[2/3] object-cover block;}
 

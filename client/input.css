@@ -58,9 +58,9 @@
 
   /* BOTONES DE BARRA DE VISTA */
  .btn-barra-vista {
-  @apply w-full px-4 pl-4 bg-primary text-white dark:bg-gold dark:text-primary 
-    font-bold text-[11px] uppercase tracking-widest rounded-lg 
-    shadow-md transition-all cursor-pointer text-center border-none
+  @apply w-full p-4 bg-primary text-white dark:bg-gold dark:text-primary 
+    font-bold text-[11px] uppercase tracking-widest
+    shadow-md transition-all cursor-pointer border-none
     flex items-center justify-center gap-2;
   }
   .btn-barra-vista:hover {

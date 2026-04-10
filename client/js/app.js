@@ -336,7 +336,7 @@ window.addEventListener("load", () => {
                 <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
             </div>
         </div>
-        <button class="btn-barra-vista ...">       
+        <button class="btn-barra-vista mt-auto" title="Marcar como vista">
             <span class="icon-check hidden mr-2">✓</span>
             <span class="texto-boton">Marcar como vista</span>
         </button>

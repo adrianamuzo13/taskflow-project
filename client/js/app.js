@@ -336,7 +336,7 @@ window.addEventListener("load", () => {
                     <span class="oscar-badge ${badgeClass}">${peli.estado}</span>
                 </div>
             </div>
-            <button class="btn-barra-vista w-full mt-auto bg-primary hover:bg-secondary text-white py-4 font-bold uppercase text-[11px] tracking-widest transition-all duration-300 flex justify-center items-center cursor-pointer border-none rounded-b-[inherit]" title="Marcar como vista">
+            <button class="btn-barra-vista w-full mt-auto bg-primary hover:bg-secondary text-white py-4 font-bold uppercase text-[11px] tracking-widest transition-all duration-300 flex justify-center items-center cursor-pointer border-none rounded-b-[inherit] text-center" title="Marcar como vista">
                     <span class="icon-check hidden mr-2">✓</span>
                     <span class="texto-boton">Marcar como vista</span>
             </button>
